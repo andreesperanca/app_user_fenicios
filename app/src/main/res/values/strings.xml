@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Fenicios</string>
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="pizzas_salgadas">Pizzas salgadas</string>
+    <string name="product_name">PRODUCT NAME</string>
+    <string name="home">Cardápio</string>
+    <string name="cart">Carrinho</string>
+    <string name="profile">Eu</string>
+    <string name="addToCart">Adicionar ao carrinho</string>
+    <string name="finalizingThePurchase">Finalizar Compra</string>
+    <string name="cartValor">R$ 10,00</string>
+    <string name="defaultValue">1</string>
+    <string name="amountTitle">Quantidade</string>
+    <string name="sizeTitle">Tamanho</string>
+    <string name="big">Grande (16 fatias)</string>
+    <string name="small">Pequena ( 11 fatias )</string>
+    <string name="average">Média ( 14 fatias )</string>
+    <string name="confirm">Confirmar</string>
+    <string name="cancel">Cancelar</string>
+
+</resources>
