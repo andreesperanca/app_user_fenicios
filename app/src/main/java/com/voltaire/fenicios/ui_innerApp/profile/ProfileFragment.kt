@@ -1,11 +1,10 @@
-package com.voltaire.fenicios.ui.profile
+package com.voltaire.fenicios.ui_innerApp.profile
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.voltaire.fenicios.databinding.FragmentCartBinding
 import com.voltaire.fenicios.databinding.FragmentProfileBinding
 
 

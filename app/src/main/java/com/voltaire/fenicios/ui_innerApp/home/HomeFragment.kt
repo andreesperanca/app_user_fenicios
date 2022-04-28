@@ -1,4 +1,4 @@
-package com.voltaire.fenicios.ui.home
+package com.voltaire.fenicios.ui_innerApp.home
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1037049668591",
+    "project_id": "fenicios-deliveryapp",
+    "storage_bucket": "fenicios-deliveryapp.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1037049668591:android:cb1d9ae6d36045f1da0c1a",
+        "android_client_info": {
+          "package_name": "com.voltaire.fenicios"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1037049668591-atheq17fh6vml2b0euhp93qsm0tfkse7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.voltaire.fenicios",
+            "certificate_hash": "d12771853ec88dab064437c71fba4909643ea4f2"
+          }
+        },
+        {
+          "client_id": "1037049668591-ekjelbgvl3auhlfj2vrqkf2puk15r6ga.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAjfKb0HCDSw2Yi7Qd1K7payJE2zg1ErQQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1037049668591-ekjelbgvl3auhlfj2vrqkf2puk15r6ga.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

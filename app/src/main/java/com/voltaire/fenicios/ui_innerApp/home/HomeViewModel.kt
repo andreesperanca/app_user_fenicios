@@ -1,6 +1,5 @@
-package com.voltaire.fenicios.ui.home
+package com.voltaire.fenicios.ui_innerApp.home
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.voltaire.fenicios.model.Category

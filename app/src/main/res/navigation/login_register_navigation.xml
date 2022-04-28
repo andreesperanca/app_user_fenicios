@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/login_register_navigation"
+    app:startDestination="@id/loginFragment">
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.voltaire.fenicios.ui_login.login.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" />
+    <fragment
+        android:id="@+id/registerWithPhone"
+        android:name="com.voltaire.fenicios.ui_login.register.RegisterWithPhone"
+        android:label="fragment_register_with_phone"
+        tools:layout="@layout/fragment_register_with_phone" />
+    <fragment
+        android:id="@+id/registerInformations"
+        android:name="com.voltaire.fenicios.ui_login.register.RegisterInformations"
+        android:label="fragment_register_informations"
+        tools:layout="@layout/fragment_register_informations" />
+    <fragment
+        android:id="@+id/confirmNumberFragment"
+        android:name="com.voltaire.fenicios.ui_login.register.ConfirmNumberFragment"
+        android:label="fragment_confirm_number"
+        tools:layout="@layout/fragment_confirm_number" />
+</navigation>

@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'androidx.navigation.safeargs.kotlin'
+    id 'com.google.gms.google-services'
     id("kotlin-parcelize")
 }
 
@@ -57,4 +58,10 @@ dependencies {
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.5.2'
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.4.1'
 
+
+    //FireBaseAuth
+    implementation 'com.google.firebase:firebase-auth-ktx:21.0.3'
+    //FirebaseCore
+    implementation 'com.google.firebase:firebase-core:20.1.2'
 }
+

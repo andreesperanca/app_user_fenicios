@@ -1,6 +1,5 @@
 package com.voltaire.fenicios.adapters
 
-import android.text.Layout
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +8,7 @@ import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.voltaire.fenicios.R
 import com.voltaire.fenicios.model.Product
-import com.voltaire.fenicios.ui.home.HomeFragmentDirections
+import com.voltaire.fenicios.ui_innerApp.home.HomeFragmentDirections
 
 
 class ProductAdapter(var productsList : List<Product>) : RecyclerView.Adapter<ProductAdapter.ProductViewHolder>() {

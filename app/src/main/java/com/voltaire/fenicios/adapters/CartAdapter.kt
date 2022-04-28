@@ -7,14 +7,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.voltaire.fenicios.R
-import com.voltaire.fenicios.model.Product
+import com.voltaire.fenicios.model.CartItem
 
 class CartAdapter : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
-    val productsList = listOf<Product>(
-        Product(1, "Pizza Picante", "Pizzas Salgadas", 20.50),
-        Product(1, "Pizza Picante", "Pizzas Salgadas", 20.50)
-    )
+    val productsList = emptyList<CartItem>()
+
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
@@ -37,9 +35,8 @@ class CartAdapter : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
         val valorProduct : TextView = itemView.findViewById(R.id.valorProduct)
         val imageProduct : ImageView = itemView.findViewById(R.id.imageCartProduct)
 
-        fun bind(product: Product) {
+        fun bind(product: CartItem) {
             productName.text = product.name
-            valorProduct.text = product.price.toString()
             imageProduct.setImageResource(R.drawable.mock_product)
         }
     }
