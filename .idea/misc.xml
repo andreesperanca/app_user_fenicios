@@ -5,14 +5,18 @@
       <map>
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/drawable/bottom_dialog_form.xml" value="0.195" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/activity_login.xml" value="0.1921875" />
-        <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/activity_main.xml" value="0.17" />
+        <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/bottom_add_to_cart_dialog.xml" value="0.25" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/cart_product_item.xml" value="1.25" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/cart_pruduct_item.xml" value="0.22" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_cart.xml" value="0.22" />
+        <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_confirm_number.xml" value="0.1921875" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_home.xml" value="0.25" />
-        <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_login.xml" value="0.33" />
+        <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_login.xml" value="0.18" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_product_details.xml" value="0.22" />
+        <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_profile.xml" value="0.1921875" />
+        <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_register_informations.xml" value="0.1921875" />
+        <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_register_with_phone.xml" value="0.1921875" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/lk.xml" value="0.1921875" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/product_item.xml" value="0.33" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/type_product_item.xml" value="0.25" />

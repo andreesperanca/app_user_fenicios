@@ -1,5 +1,6 @@
 package com.voltaire.fenicios.ui_innerApp.home
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 import com.voltaire.fenicios.adapters.CategoriesAdapterCallBacks
 import com.voltaire.fenicios.adapters.ProductAdapter
 import com.voltaire.fenicios.adapters.CategoriesAdapter
@@ -28,6 +32,8 @@ class HomeFragment : Fragment(), CategoriesAdapterCallBacks {
     private lateinit var recyclerViewProduct : RecyclerView
     private lateinit var productAdapter : ProductAdapter
     private lateinit var viewmodel : HomeViewModel
+
+    private lateinit var auth : FirebaseAuth
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -72,10 +78,14 @@ class HomeFragment : Fragment(), CategoriesAdapterCallBacks {
     override fun onStart() {
         super.onStart()
 
-
     }
 
     override fun searchClickListener(category: Category) {
         viewmodel.listProducts.value = category.listProduct
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        auth = Firebase.auth
     }
 }

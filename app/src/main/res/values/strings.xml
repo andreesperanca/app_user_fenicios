@@ -17,5 +17,14 @@
     <string name="average">Média ( 14 fatias )</string>
     <string name="confirm">Confirmar</string>
     <string name="cancel">Cancelar</string>
+    <string name="inputNumber">Número de telefone</string>
+    <string name="inputPassword">Senha</string>
+    <string name="enter">Entrar</string>
+    <string name="register">Registrar</string>
+    <string name="resend">Reenviar</string>
+    <string name="cpf">CPF</string>
+    <string name="name">Nome e sobrenome</string>
+    <string name="passwordConfirm">Confirmar senha</string>
+    <string name="verificationCode">Código de verificação</string>
 
 </resources>
