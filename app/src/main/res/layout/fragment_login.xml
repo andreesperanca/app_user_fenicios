@@ -7,53 +7,53 @@
     android:layout_height="match_parent"
     tools:context=".ui_login.login.LoginFragment">
 
-
-    <LinearLayout
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
+    <ScrollView
+        style="@style/DefaultContraintDefinitions"
         app:layout_constraintVertical_bias="0.3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:gravity="center_horizontal"
-        android:orientation="vertical"
-        android:paddingVertical="10dp">
+        tools:ignore="MissingConstraints">
 
-        <ImageView
-            android:src="@drawable/app_icon"
-            android:layout_width="350dp"
-            android:layout_height="250dp"
-            android:layout_centerHorizontal="true"
-            android:adjustViewBounds="true" />
-
-        <EditText
-            android:maxLines="1"
-            android:maxLength="13"
-            android:id="@+id/editNumberLogin"
-            android:textAlignment="center"
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="8dp"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:hint="@string/inputNumber" />
+            android:orientation="vertical"
+            android:paddingVertical="10dp">
 
-        <Button
-            android:id="@+id/btnEnter"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/enter" />
+            <ImageView
+                android:layout_width="350dp"
+                android:layout_height="300dp"
+                android:src="@drawable/app_icon" />
 
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="36dp"
+                android:layout_marginTop="25dp"
+                android:text="@string/loginMessage"
+                android:textAlignment="center" />
 
-        <Button
-            android:id="@+id/btnRegister"
-            android:backgroundTint="@color/purple_500"
-            android:layout_marginHorizontal="100dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/register" />
+            <EditText
+                android:textColor="@color/red"
+                android:id="@+id/editNumberLogin"
+                style="@style/FormEditText"
+                android:hint="@string/inputNumber"
+                android:maxLength="13"
+                android:maxLines="1"
+                android:textAlignment="center" />
 
-    </LinearLayout>
+            <Button
+                android:id="@+id/btnEnter"
+                style="@style/FormButton"
+                android:layout_gravity="center"
+                android:background="@drawable/button_form"
+                android:text="@string/enter" />
+
+            <ProgressBar
+                android:visibility="invisible"
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+    </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>

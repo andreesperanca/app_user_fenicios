@@ -65,5 +65,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-core:20.1.2'
     //FirebaseStore
     implementation 'com.google.firebase:firebase-firestore-ktx:24.1.1'
+
+    //CardView
+    implementation 'androidx.cardview:cardview:1.0.0'
 }
 

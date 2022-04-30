@@ -15,16 +15,22 @@
     <string name="big">Grande (16 fatias)</string>
     <string name="small">Pequena ( 11 fatias )</string>
     <string name="average">Média ( 14 fatias )</string>
-    <string name="confirm">Confirmar</string>
+    <string name="confirm">Avançar</string>
     <string name="cancel">Cancelar</string>
-    <string name="inputNumber">Número de telefone</string>
+    <string name="inputNumber">Insira seu número de telefone</string>
     <string name="inputPassword">Senha</string>
     <string name="enter">Entrar</string>
     <string name="register">Registrar</string>
-    <string name="resend">Reenviar</string>
+    <string name="resendCode">Reenviar código</string>
     <string name="cpf">CPF</string>
     <string name="name">Nome e sobrenome</string>
     <string name="passwordConfirm">Confirmar senha</string>
     <string name="verificationCode">Código de verificação</string>
+    <string name="connectOtherNumber">conectar-se com outro número</string>
+    <string name="loginMessage">Sabemos que está com fome…\n mas antes faça login utilizando seu número de celular.</string>
+    <string name="sentCode">Um código de verificação foi enviado para o número: \n \n %1$s \n \n digite ele no campo abaixo e envie, por favor.</string>
+    <string name="notRecieve">Não recebeu? clique no botão abaixo após 60 segundos.</string>
+    <string name="welcome">Parece que você é novo por aqui.\n Me conte seu nome e bom apetite.</string>
+
 
 </resources>

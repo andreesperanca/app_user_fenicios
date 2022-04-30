@@ -6,4 +6,44 @@
         <item name="marginHorizontal">10dp</item>
         <item name="android:selectableItemBackgroundBorderless">@android:color/transparent</item>
     </style>
+
+    <style name="FormEditText" parent="Widget.AppCompat.EditText">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginStart">36dp</item>
+        <item name="android:layout_marginEnd">36dp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:layout_marginTop">32dp</item>
+        <item name="android:background">@drawable/edit_text_form</item>
+    </style>
+
+    <style name="FormButton" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/red</item>
+        <item name="android:layout_marginTop">50dp</item>
+        <item name="android:layout_marginStart">80dp</item>
+        <item name="android:layout_marginEnd">80dp</item>
+        <item name="android:layout_marginBottom">24dp</item>
+        <item name="backgroundTint">@color/white</item>
+    </style>
+
+    <style name="FormButtonResend" parent="Widget.MaterialComponents.Button">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">50dp</item>
+        <item name="android:layout_marginStart">80dp</item>
+        <item name="android:layout_marginEnd">80dp</item>
+        <item name="android:layout_marginBottom">24dp</item>
+        <item name="android:background">@drawable/button_resend_form</item>
+    </style>
+
+    <style name="DefaultContraintDefinitions">
+        <item name="layout_constraintBottom_toBottomOf">parent</item>
+        <item name="layout_constraintTop_toTopOf">parent</item>
+        <item name="layout_constraintStart_toStartOf">parent</item>
+        <item name="layout_constraintEnd_toEndOf">parent</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+    </style>
 </resources>
