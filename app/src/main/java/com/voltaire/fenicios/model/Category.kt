@@ -1,4 +1,4 @@
-package com.voltaire.fenicios.model
+package com.voltaire.fenicios.models
 
 data class Category(
     val name : String,

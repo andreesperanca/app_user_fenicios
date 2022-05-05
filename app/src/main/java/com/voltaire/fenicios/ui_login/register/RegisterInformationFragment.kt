@@ -13,12 +13,10 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
-import com.voltaire.fenicios.LoginActivity
 import com.voltaire.fenicios.MainActivity
 import com.voltaire.fenicios.R
 import com.voltaire.fenicios.databinding.FragmentRegisterInformationsBinding
 import com.voltaire.fenicios.model.User
-import com.voltaire.fenicios.ui_innerApp.productsdetails.ProductDetailsFragmentArgs
 
 class RegisterInformations : Fragment() {
 
