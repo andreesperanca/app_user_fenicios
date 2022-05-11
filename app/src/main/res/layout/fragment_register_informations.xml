@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context="ui_login.register.RegisterInformations">
+    tools:context="ui_login.register.RegisterInformation">
 
 
     <LinearLayout
@@ -38,11 +38,10 @@
 
 
         <EditText
-            android:textColor="@color/red"
             android:id="@+id/txtName"
             style="@style/FormEditText"
             android:hint="@string/name"
-            android:maxLength="13"
+            android:maxLength="30"
             android:maxLines="1"
             android:textAlignment="center" />
 

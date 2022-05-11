@@ -10,8 +10,11 @@ import android.widget.*
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.voltaire.fenicios.R
+import com.voltaire.fenicios.databinding.BottomAddToCartDialogBinding
 import com.voltaire.fenicios.databinding.FragmentProductDetailsBinding
 import com.voltaire.fenicios.model.CartItem
 import com.voltaire.fenicios.repositories.CartAndDetailsRepository
@@ -48,9 +51,19 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
         val product = args.product
 
         with(binding) {
+            Glide.with(requireContext())
+                .load(product.url)
+                .into(detailImage)
             detailImage.setImageResource(R.drawable.mock_product)
             detailTitle.text = product.name
-            detailDescription.text = product.category
+            detailDescription.text = product.description
+
+            detailPrice.text = getString(R.string.defaultPrice, product.prices!!["Pequena"])
+
+            detailSmallPrice.text = getString(R.string.smallPrice, product.prices!!["Pequena"])
+            detailAveragePrice.text = getString(R.string.averagePrice, product.prices!!["Media"])
+            detailBigPrice.text = getString(R.string.bigPrice, product.prices!!["Grande"])
+
         }
     }
 
@@ -77,86 +90,67 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
     }
 
     private fun addToCart() {
-        val bottomDialog = layoutInflater.inflate(R.layout.bottom_add_to_cart_dialog, null)
+        val binding = BottomAddToCartDialogBinding.inflate(layoutInflater)
         val dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetStyle)
-        dialog.setContentView(bottomDialog)
+        dialog.setContentView(binding.root)
 
-        val editBtnConfirm = bottomDialog.findViewById<Button>(R.id.btnConfirm)
-        val editBtnCancel = bottomDialog.findViewById<Button>(R.id.btnCancel)
-        val editBtnSum = bottomDialog.findViewById<ImageButton>(R.id.imageBtnSum)
-        val editBtnSubtraction = bottomDialog.findViewById<ImageButton>(R.id.imageBtnSubtraction)
+        with(binding) {
 
-        val radioSmall = bottomDialog.findViewById<RadioButton>(R.id.radioSmall)
-        val radioBig = bottomDialog.findViewById<RadioButton>(R.id.radioBig)
-        val radioAverage = bottomDialog.findViewById<RadioButton>(R.id.radioAverage)
-        val radioGroup = bottomDialog.findViewById<RadioGroup>(R.id.radioGroupSize)
-
-        val txtAmount = bottomDialog.findViewById<TextView>(R.id.txtAmount)
-
-        editBtnSum.setOnClickListener {
-            val amount = txtAmount.text.toString().toInt()
-            if (amount >= 1) {
-                val result = amount + 1
-                result.toString()
-                txtAmount.text = result.toString()
-            } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Você não pode fazer essa ação",
-                    Toast.LENGTH_SHORT
-                ).show()
+            imageBtnSum.setOnClickListener {
+                val amount = txtAmount.text.toString().toInt()
+                if (amount >= 1) {
+                    val result = amount + 1
+                    result.toString()
+                    txtAmount.text = result.toString()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Você não pode fazer essa ação",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
-        }
 
-        editBtnSubtraction.setOnClickListener {
-            val amount = txtAmount.text.toString().toInt()
-            if (amount > 1) {
-                val result = amount - 1
-                result.toString()
-                txtAmount.text = result.toString()
-            } else {
-                Toast.makeText(
-                    requireContext(),
-                    "Você não pode fazer essa ação",
-                    Toast.LENGTH_SHORT
-                ).show()
+            imageBtnSubtraction.setOnClickListener {
+                val amount = txtAmount.text.toString().toInt()
+                if (amount > 1) {
+                    val result = amount - 1
+                    result.toString()
+                    txtAmount.text = result.toString()
+                } else {
+                    Toast.makeText(
+                        requireContext(),
+                        "Você não pode fazer essa ação",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
-        }
 
-        fun checkBoxReturn (radioGroup : RadioGroup) : String {
-            if (radioGroup.checkedRadioButtonId == -1) {
-                Toast.makeText(
-                    requireContext(),
-                    "Selecione uma das opções de tamanho, por favor.",
-                    Toast.LENGTH_SHORT
-                ).show()
+            fun checkBoxReturn (radioGroup: RadioGroup): String {
+                if (radioGroup.checkedRadioButtonId == -1) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Selecione uma das opções de tamanho, por favor.",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
+                when (radioGroup.checkedRadioButtonId) {
+                    radioBig.id -> return "Grande"
+                    radioAverage.id -> return "Média"
+                    radioSmall.id -> return "Pequena"
+                }
+                return "null"
             }
-            when (radioGroup.checkedRadioButtonId) {
-                radioBig.id -> return "Grande"
-                radioAverage.id -> return "Média"
-                radioSmall.id -> return "Pequena"
+
+            btnConfirm.setOnClickListener {
+
             }
-            return "null"
+
+            btnCancel.setOnClickListener {
+                dialog.dismiss()
+            }
+
+            dialog.show()
         }
-
-        editBtnConfirm.setOnClickListener {
-            val amount = txtAmount.text.toString()
-            val priceFinal = amount.toInt() * args.product.list[0].price.toInt()
-
-
-            val list = mutableListOf<CartItem>()
-            val newCartItem = CartItem(args.product.name, args.product.list[0].price, amount.toInt(), priceFinal.toDouble())
-            list.add(newCartItem)
-            Log.i("teste2", list.size.toString())
-            viewModel.addItemCartList(newCartItem)
-            dialog.dismiss()
-
-        }
-
-        editBtnCancel.setOnClickListener {
-            dialog.dismiss()
-        }
-
-        dialog.show()
     }
 }

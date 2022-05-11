@@ -5,10 +5,14 @@
     android:layout_height="wrap_content">
 
     <TextView
+        android:layout_margin="5dp"
+        android:background="@drawable/item_type_format"
         android:id="@+id/titleMenu"
-        android:padding="16dp"
+        android:padding="13dp"
         android:text="@string/pizzas_salgadas"
-        android:textSize="17sp"
+        android:textSize="15sp"
+        android:textAlignment="center"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

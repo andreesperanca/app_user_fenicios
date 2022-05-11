@@ -37,8 +37,7 @@
             android:hint="@string/verificationCode"
             android:maxLength="6"
             android:maxLines="1"
-            android:textAlignment="center"
-            android:textColor="@color/red" />
+            android:textAlignment="center" />
 
         <Button
             android:layout_marginTop="15dp"

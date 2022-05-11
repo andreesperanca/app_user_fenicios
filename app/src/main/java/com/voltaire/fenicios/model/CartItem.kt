@@ -1,4 +1,4 @@
-package com.voltaire.fenicios.models
+package com.voltaire.fenicios.model
 
 import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize

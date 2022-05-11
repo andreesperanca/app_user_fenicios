@@ -15,7 +15,7 @@
             app:destination="@id/confirmNumberFragment" />
         <action
             android:id="@+id/action_loginFragment_to_registerInformations2"
-            app:destination="@id/registerInformations" />
+            app:destination="@id/registerInformationFragment" />
     </fragment>
     <fragment
         android:id="@+id/confirmNumberFragment"
@@ -23,15 +23,15 @@
         android:label="ConfirmNumberFragment" >
         <action
             android:id="@+id/action_confirmNumberFragment_to_registerInformations"
-            app:destination="@id/registerInformations" />
+            app:destination="@id/registerInformationFragment" />
         <argument
             android:name="numberPhone"
             app:argType="string"
             android:defaultValue="invalidNumber" />
     </fragment>
     <fragment
-        android:id="@+id/registerInformations"
-        android:name="com.voltaire.fenicios.ui_login.register.RegisterInformations"
+        android:id="@+id/registerInformationFragment"
+        android:name="com.voltaire.fenicios.ui_login.register.RegisterInformationFragment"
         android:label="RegisterInformations" >
         <argument
             android:name="uid"

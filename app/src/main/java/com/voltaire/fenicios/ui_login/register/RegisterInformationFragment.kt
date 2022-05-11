@@ -18,21 +18,14 @@ import com.voltaire.fenicios.R
 import com.voltaire.fenicios.databinding.FragmentRegisterInformationsBinding
 import com.voltaire.fenicios.model.User
 
-class RegisterInformations : Fragment() {
+class RegisterInformationFragment : Fragment() {
 
     private lateinit var binding: FragmentRegisterInformationsBinding
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
-    private val args: RegisterInformationsArgs by navArgs()
+    private val args: RegisterInformationFragmentArgs by navArgs()
     private lateinit var uidUser: String
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        auth = Firebase.auth
-        db = FirebaseFirestore.getInstance()
-        uidUser = args.uid
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -40,6 +33,13 @@ class RegisterInformations : Fragment() {
     ): View? {
         binding = FragmentRegisterInformationsBinding.inflate(layoutInflater)
         return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        auth = Firebase.auth
+        db = FirebaseFirestore.getInstance()
+        uidUser = args.uid
     }
 
     override fun onStart() {

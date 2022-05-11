@@ -9,19 +9,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ProgressBar
 import android.widget.Toast
+import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.google.firebase.auth.*
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
-import com.voltaire.fenicios.LoginActivity
 import com.voltaire.fenicios.MainActivity
-import com.voltaire.fenicios.R
+import com.voltaire.fenicios.database.FirebaseService
 import com.voltaire.fenicios.databinding.FragmentLoginBinding
 import com.voltaire.fenicios.model.User
-import com.voltaire.fenicios.ui_innerApp.home.HomeFragment
-import com.voltaire.fenicios.ui_login.confirmNumber.ConfirmNumberFragmentDirections
-import io.grpc.InternalChannelz.id
+import com.voltaire.fenicios.repositories.HomeRepository
+import com.voltaire.fenicios.repositories.LoginRepository
+import com.voltaire.fenicios.ui_innerApp.home.HomeViewModel
+import com.voltaire.fenicios.ui_innerApp.home.HomeViewModelFactory
 
 class LoginFragment : Fragment() {
 
@@ -29,6 +30,7 @@ class LoginFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
     private lateinit var progressBar: ProgressBar
+    private lateinit var loginViewModel: LoginViewModel
 
 
     override fun onCreateView(
@@ -36,17 +38,28 @@ class LoginFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         binding = FragmentLoginBinding.inflate(inflater)
-        progressBar = binding.progressBar
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        loginViewModel = ViewModelProvider(
+            viewModelStore, LoginViewModelFactory(
+                LoginRepository(FirebaseService)
+            )
+        ).get(LoginViewModel::class.java)
+
         auth = Firebase.auth
+        db = FirebaseFirestore.getInstance()
+        progressBar = binding.progressBar
         binding.editNumberLogin.addTextChangedListener(PhoneNumberFormattingTextWatcher("BR"))
+    }
+
+    override fun onStart() {
+        super.onStart()
         binding.btnEnter.setOnClickListener {
-            if (verifyNumber()) {
+            if (loginViewModel.verifyNumber(binding.editNumberLogin, requireContext())) {
                 val editTxt = binding.editNumberLogin.text
                 val numberPhone = "+55 ${editTxt}"
                 val action =
@@ -59,71 +72,57 @@ class LoginFragment : Fragment() {
         }
     }
 
-    override fun onStart() {
-        super.onStart()
-
+    override fun onResume() {
+        super.onResume()
         verifyAuth()
-
     }
 
-fun verifyAuth() {
-    if (auth.currentUser != null) {
-        startLoading(true)
-        val currentUser = auth.currentUser
-        db = FirebaseFirestore.getInstance()
-        db.collection("users")
-            .document(currentUser?.uid.toString())
-            .get()
-            .addOnSuccessListener {
-                if (auth.currentUser != null) {
-                    val userLogged = it.toObject(User::class.java)?.name
-                    if (userLogged != null) {
-                        val intent = Intent(activity, MainActivity::class.java)
-                        startActivity(intent)
-                        activity?.finish()
-                        startLoading(false)
-                    } else {
-                        val action =
-                            LoginFragmentDirections.actionLoginFragmentToRegisterInformations2(
-                                currentUser!!.uid
-                            )
-                        findNavController().navigate(action)
-                        startLoading(false)
+    private fun verifyAuth() {
+        if (auth.currentUser != null) {
+            startLoading(true)
+            val currentUser = auth.currentUser
+            db.collection("users")
+                .document(currentUser?.uid.toString())
+                .get()
+                .addOnSuccessListener {
+                    if (auth.currentUser != null) {
+                        val userLogged = it.toObject(User::class.java)?.name
+                        if (userLogged != null) {
+                            val intent = Intent(activity, MainActivity::class.java)
+                            startActivity(intent)
+                            activity?.finish()
+                            startLoading(false)
+                        } else {
+                            val action =
+                                LoginFragmentDirections.actionLoginFragmentToRegisterInformations2(
+                                    currentUser!!.uid
+                                )
+                            findNavController().navigate(action)
+                            startLoading(false)
+                        }
                     }
+                }.addOnFailureListener {
+                    toastCreator(it.message.toString())
+                    startLoading(false)
                 }
-            }.addOnFailureListener {
-                toastCreator(it.message.toString())
-                startLoading(false)
-            }
+        }
     }
-}
 
-private fun verifyNumber(): Boolean {
-    val txtNumber = binding.editNumberLogin
-
-    if (txtNumber.length() != 13) {
-        toastCreator("Digite um número válido, com DDD por favor.")
-        return false
-    } else {
-        return true
+    private fun toastCreator(s: String) {
+        Toast.makeText(requireContext(), s, Toast.LENGTH_SHORT).show()
     }
-}
 
-private fun toastCreator(s: String) {
-    Toast.makeText(requireContext(), s, Toast.LENGTH_SHORT).show()
-}
-
-private fun updateUI(user: FirebaseUser? = auth.currentUser) {
-    val intent = Intent(requireContext(), MainActivity::class.java)
-    startActivity(intent)
-    activity?.finish()
-}
-
-private fun startLoading(status: Boolean) {
-    if (status) {
-        binding.progressBar.visibility = View.VISIBLE
-    } else {
-        binding.progressBar.visibility = View.INVISIBLE
+    private fun updateUI(user: FirebaseUser? = auth.currentUser) {
+        val intent = Intent(requireContext(), MainActivity::class.java)
+        startActivity(intent)
+        activity?.finish()
     }
-}
+
+    private fun startLoading(status: Boolean) {
+        if (status) {
+            binding.progressBar.visibility = View.VISIBLE
+        } else {
+            binding.progressBar.visibility = View.INVISIBLE
+        }
+    }
 }

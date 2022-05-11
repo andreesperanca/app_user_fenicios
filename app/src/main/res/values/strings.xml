@@ -12,9 +12,9 @@
     <string name="defaultValue">1</string>
     <string name="amountTitle">Quantidade</string>
     <string name="sizeTitle">Tamanho</string>
-    <string name="big">Grande (16 fatias)</string>
-    <string name="small">Pequena ( 11 fatias )</string>
-    <string name="average">Média ( 14 fatias )</string>
+    <string name="big">Grande</string>
+    <string name="small">Pequena</string>
+    <string name="average">Média</string>
     <string name="confirm">Avançar</string>
     <string name="cancel">Cancelar</string>
     <string name="inputNumber">Insira seu número de telefone</string>
@@ -29,8 +29,15 @@
     <string name="connectOtherNumber">conectar-se com outro número</string>
     <string name="loginMessage">Sabemos que está com fome…\n mas antes faça login utilizando seu número de celular.</string>
     <string name="sentCode">Um código de verificação foi enviado para o número: \n \n %1$s \n \n digite ele no campo abaixo e envie, por favor.</string>
-    <string name="notRecieve">Não recebeu? clique no botão abaixo após 60 segundos.</string>
+    <string name="notRecieve">Não recebeu? clique no botão abaixo após o período de espera.</string>
     <string name="welcome">Parece que você é novo por aqui.\n Me conte seu nome e bom apetite.</string>
-
-
+    <string name="categories">Explore as categorias</string>
+    <string name="welcomeUser">Seja bem-vindo \n %1$s \n</string>
+    <string name="product_price">A partir de R$ %1$s</string>
+    <string name="defaultPrice">A partir de R$ %1$s.</string>
+    <string name="Sizes">Tamanhos</string>
+    <string name="Description">Descrição</string>
+    <string name="smallPrice">Pequena: 25cm por R$ %1$s.</string>
+    <string name="averagePrice">Média: 30cm por R$ %1$s.</string>
+    <string name="bigPrice">Grande: 35cm por R$ %1$s.</string>
 </resources>

@@ -1,62 +1,39 @@
 package com.voltaire.fenicios.database
 
+import android.content.ContentValues.TAG
 import android.content.Context
-import com.voltaire.fenicios.model.CartItem
+import android.os.ProxyFileDescriptorCallback
+import android.util.Log
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.toObject
 import com.voltaire.fenicios.model.Category
 import com.voltaire.fenicios.model.Product
+import kotlinx.coroutines.tasks.await
 
 interface FirebaseService {
 
-    fun getPromotions(): List<Product> {
-
-        val cartPizzadeQueijo =
-            listOf(
-            CartItem("Pizza de Queijo (Pequena) ", 25.00, 1),
-            CartItem("Pizza de Queijo (Média) ", 30.00, 1),
-            CartItem("Pizza de Queijo (Grande) ", 36.00, 1)
-        )
-        val listPromotions = listOf(
-            Product("Pizza de Queijo", "Pizza Salgada",cartPizzadeQueijo, "TAMANHOS:"),
-            Product("Pizza de Bolonhesa", "Pizza Salgada",cartPizzadeQueijo, "TAMANHOS:"),
-        )
-        return listPromotions
+    suspend fun allProducts(db : FirebaseFirestore) : List<Product> {
+        val requestProducts =
+            db.collection("promoções")
+                .get()
+                .await()
+                .documents
+                .mapNotNull {
+                    it.toObject(Product::class.java)
+                }
+        return requestProducts
     }
 
-    fun getPizzasDoces(): List<Product> {
-        val cartPizzadeChocolate =
-            listOf(
-                CartItem("Pizza de Chocolate (Pequena) ", 25.00, 1),
-                CartItem("Pizza de Chocolate (Média) ", 30.00, 1),
-                CartItem("Pizza de Chocolate (Grande) ", 36.00, 1)
-            )
-        val listDoces = listOf(
-            Product("Pizza de Chocolate", "Pizzas Doces", cartPizzadeChocolate, "Tamanhos:"),
-            Product("Pizza de Chocolate", "Pizzas Doces", cartPizzadeChocolate, "Tamanhos:")
-        )
-        return listDoces
-    }
-
-    fun getPizzasSalgadas(): List<Product> {
-        val cartPizzadeQueijo =
-            listOf(
-                CartItem("Pizza de Queijo (Pequena) ", 25.00, 1),
-                CartItem("Pizza de Queijo (Média) ", 30.00, 1),
-                CartItem("Pizza de Queijo (Grande) ", 36.00, 1)
-            )
-        val listSalgadas = listOf(
-            Product("Pizza de Queijo", "Pizza Salgada",cartPizzadeQueijo, "TAMANHOS:"),
-            Product("Pizza de Bolonhesa", "Pizza Salgada",cartPizzadeQueijo, "TAMANHOS:"),
-        )
-        return listSalgadas
-    }
-
-    fun getCategories(): List<Category> {
-        val listCategory = listOf(
-            Category("Promoções", getPromotions()),
-            Category("Pizzas Salgadas", getPizzasSalgadas()),
-            Category("Pizzas Doces", getPizzasDoces()),
-        )
-        return listCategory
+     suspend fun getCategories(db : FirebaseFirestore) : List<Category> {
+        val requestCategories =
+            db.collection("produtos")
+                .get()
+                .await()
+                .documents
+                .mapNotNull {
+                    it.toObject(Category::class.java)
+                }
+        return requestCategories
     }
 
     companion object : FirebaseService {

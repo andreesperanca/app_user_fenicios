@@ -1,21 +1,15 @@
 package com.voltaire.fenicios.repositories
 
+import android.content.Context
+import androidx.lifecycle.MutableLiveData
+import com.google.firebase.firestore.FirebaseFirestore
 import com.voltaire.fenicios.database.FirebaseService
 import com.voltaire.fenicios.model.Category
 import com.voltaire.fenicios.model.Product
 
 class HomeRepository(private val firebaseService: FirebaseService) {
 
-    fun getPromotions() : List<Product> {
-       return firebaseService.getPromotions()
-    }
-
-    fun getCategories () : List<Category> {
-        return firebaseService.getCategories()
-    }
-
-    fun getPizzasSalgadas() : List<Product> {
-        return firebaseService.getPizzasSalgadas()
-    }
+    suspend fun getAllProducts (db: FirebaseFirestore) = firebaseService.allProducts(db)
+    suspend fun getCategories(db: FirebaseFirestore) = firebaseService.getCategories(db)
 
 }

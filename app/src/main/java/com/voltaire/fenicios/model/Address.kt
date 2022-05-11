@@ -1,4 +1,4 @@
-package com.voltaire.fenicios.models
+package com.voltaire.fenicios.model
 
 data class Address(
     val CEP : String,

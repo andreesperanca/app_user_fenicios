@@ -32,7 +32,6 @@
                 android:textAlignment="center" />
 
             <EditText
-                android:textColor="@color/red"
                 android:id="@+id/editNumberLogin"
                 style="@style/FormEditText"
                 android:hint="@string/inputNumber"

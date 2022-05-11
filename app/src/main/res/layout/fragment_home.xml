@@ -9,7 +9,7 @@
 
 
     <LinearLayout
-        android:layout_marginTop="15dp"
+       android:background="@color/red"
         android:id="@+id/linearLayoutHome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,27 +18,39 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-
-        <TextView
-            android:text="asdasdsadasdad"
-            android:id="@+id/txtTest"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+        <ImageView
+            android:backgroundTint="@color/red"
+            android:padding="8dp"
+            android:background="@drawable/hightlights_format"
+            android:layout_gravity="center"
+            android:src="@drawable/pizza_hut"
+            android:layout_width="300dp"
+            android:layout_height="150dp"/>
 
         <androidx.appcompat.widget.SearchView
-            android:background="@color/gray"
-            android:layout_margin="15dp"
+            android:layout_margin="20dp"
+            android:background="@drawable/seach_view_format"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:textAlignment="center" />
+            android:layout_height="wrap_content"/>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_product_type"
+        <TextView
+            android:textColor="@color/white"
+            android:layout_margin="5dp"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            android:text="@string/categories"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            tools:itemCount="1"
-            tools:listitem="@layout/type_product_item" />
+            android:layout_height="wrap_content"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:padding="8dp"
+                android:id="@+id/rv_product_type"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                tools:itemCount="1"
+                tools:listitem="@layout/type_product_item" />
+
     </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
