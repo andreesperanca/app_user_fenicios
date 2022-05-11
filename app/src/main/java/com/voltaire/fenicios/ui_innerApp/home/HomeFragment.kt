@@ -16,12 +16,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.HORIZONTAL
 import com.google.android.gms.tasks.Task
+import com.google.android.material.snackbar.Snackbar
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 import com.google.firebase.ktx.Firebase
+import com.voltaire.fenicios.MainActivity
 import com.voltaire.fenicios.adapters.CategoriesAdapterCallBacks
 import com.voltaire.fenicios.adapters.ProductAdapter
 import com.voltaire.fenicios.adapters.CategoriesAdapter
@@ -29,6 +31,7 @@ import com.voltaire.fenicios.database.FirebaseService
 import com.voltaire.fenicios.databinding.FragmentHomeBinding
 import com.voltaire.fenicios.model.Category
 import com.voltaire.fenicios.model.Product
+import com.voltaire.fenicios.model.User
 import com.voltaire.fenicios.repositories.HomeRepository
 import kotlinx.coroutines.awaitAll
 import kotlinx.coroutines.launch
@@ -113,19 +116,5 @@ class HomeFragment : Fragment(), CategoriesAdapterCallBacks {
 
     override fun searchClickListener(category: Category) {
         viewmodel.listProducts.value = category.listProduct
-    }
-
-    private suspend fun loadCategories() {
-        val list = mutableListOf<Category>()
-
-        val requestUsers =
-            db.collection("produtos")
-                .get()
-                .await()
-                .documents
-                .map {
-                    it.toObject(Category::class.java)
-                }
-        Log.i("teste", requestUsers.size.toString())
     }
 }

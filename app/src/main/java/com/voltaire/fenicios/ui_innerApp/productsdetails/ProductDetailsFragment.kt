@@ -13,19 +13,24 @@ import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
 import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomsheet.BottomSheetDialog
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.voltaire.fenicios.MainActivity
 import com.voltaire.fenicios.R
 import com.voltaire.fenicios.databinding.BottomAddToCartDialogBinding
 import com.voltaire.fenicios.databinding.FragmentProductDetailsBinding
 import com.voltaire.fenicios.model.CartItem
+import com.voltaire.fenicios.model.Product
 import com.voltaire.fenicios.repositories.CartAndDetailsRepository
 import com.voltaire.fenicios.ui_innerApp.cart.CartAndDetailsViewModel
 import com.voltaire.fenicios.ui_innerApp.cart.CartAndDetailsViewModelFactory
+import java.util.jar.Manifest
 
 class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
 
     private lateinit var binding: FragmentProductDetailsBinding
 
-    private lateinit var viewModel : CartAndDetailsViewModel
+    private lateinit var viewModel: CartAndDetailsViewModel
 
     private val args: ProductDetailsFragmentArgs by navArgs()
 
@@ -41,12 +46,8 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewModel = ViewModelProvider(
-            viewModelStore,
-            CartAndDetailsViewModelFactory(
-                CartAndDetailsRepository()
-            )
-        ).get(CartAndDetailsViewModel::class.java)
+        viewModel = ViewModelProvider(viewModelStore, CartAndDetailsViewModelFactory(
+                CartAndDetailsRepository())).get(CartAndDetailsViewModel::class.java)
 
         val product = args.product
 
@@ -78,9 +79,8 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
         binding.btnCart.setOnClickListener {
             addToCart()
         }
-
-
     }
+
     override fun onResume() {
         super.onResume()
     }
@@ -126,7 +126,7 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
                 }
             }
 
-            fun checkBoxReturn (radioGroup: RadioGroup): String {
+            fun checkBoxReturn(radioGroup: RadioGroup): String {
                 if (radioGroup.checkedRadioButtonId == -1) {
                     Toast.makeText(
                         requireContext(),
@@ -143,7 +143,33 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
             }
 
             btnConfirm.setOnClickListener {
+                val returnSize = checkBoxReturn(binding.radioGroupSize)
+                val amount = binding.txtAmount.text.toString().toInt()
+                if (checkBoxReturn(binding.radioGroupSize) != "null") {
+                    val newProduct = Product(
+                        args.product.name, args.product.prices, args.product.category,
+                        args.product.description, args.product.url, amount,
+                        amount * (args.product.prices!![returnSize])!!.toInt(),
+                        returnSize
+                    )
+                    val db = FirebaseFirestore.getInstance()
+                    val user = (context as MainActivity).userLoggedReal
+                    user?.cart?.add(newProduct)
 
+
+                    db.collection("users")
+                        .document((activity as MainActivity).auth.currentUser!!.uid)
+                        .update( "cart", user?.cart)
+                        .addOnCompleteListener {
+                            if (it.isSuccessful) {
+                                Toast.makeText(requireContext(), "item adicionado.", Toast.LENGTH_SHORT).show()
+                                dialog.dismiss()
+                            } else {
+                                Toast.makeText(requireContext(), "não deu certo", Toast.LENGTH_SHORT).show()
+                                dialog.dismiss()
+                            }
+                        }
+                }
             }
 
             btnCancel.setOnClickListener {

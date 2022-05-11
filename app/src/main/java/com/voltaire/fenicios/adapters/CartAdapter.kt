@@ -6,19 +6,19 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.voltaire.fenicios.R
+import com.voltaire.fenicios.databinding.CartPruductItemBinding
 import com.voltaire.fenicios.model.CartItem
+import com.voltaire.fenicios.model.Product
+import kotlinx.coroutines.processNextEventInCurrentThread
 
-class CartAdapter : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
-
-    val productsList = emptyList<CartItem>()
-
+class CartAdapter(private val productsList: List<Product> = emptyList()) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
-        return CartViewHolder(
-            LayoutInflater.from(parent.context).inflate(R.layout.cart_pruduct_item, parent, false)
-        )
+        val binding = CartPruductItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        return CartViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: CartViewHolder, position: Int) {
@@ -29,15 +29,19 @@ class CartAdapter : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
         return productsList.size
     }
 
-    inner class CartViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    inner class CartViewHolder(private val binding : CartPruductItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        val productName : TextView = itemView.findViewById(R.id.cartNameProduct)
-        val valorProduct : TextView = itemView.findViewById(R.id.valorProduct)
-        val imageProduct : ImageView = itemView.findViewById(R.id.imageCartProduct)
+        fun bind(product: Product) {
+            binding.cartNameProduct.text = binding.root.context.getString(R.string.cartProductName, product.name)
+            binding.valorProduct.text = product.finalPrice.toString()
+            binding.valorProduct.text = binding.root.context.getString(R.string.cartPrice, product.finalPrice.toString())
+            binding.qtdProduct.text = binding.root.context.getString(R.string.cartQtd, product.qtd.toString())
+            binding.sizeProduct.text = binding.root.context.getString(R.string.sizeProduct,product.size)
 
-        fun bind(product: CartItem) {
-            productName.text = product.name
-            imageProduct.setImageResource(R.drawable.mock_product)
+
+            Glide.with(binding.root.context)
+                .load(product.url)
+                .into(binding.imageCartProduct)
         }
     }
 }

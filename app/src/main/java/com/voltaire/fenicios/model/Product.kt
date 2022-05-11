@@ -9,5 +9,8 @@ data class  Product(
     val prices: Map<String, String>? = null,
     val category: String = "",
     val description: String = "",
-    val url: String = ""
+    val url: String = "",
+    val qtd : Int? = 1,
+    val finalPrice : Int?  = null,
+    val size : String = "nDefinida"
 ) : Parcelable

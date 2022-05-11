@@ -8,7 +8,7 @@
     <string name="profile">Eu</string>
     <string name="addToCart">Adicionar ao carrinho</string>
     <string name="finalizingThePurchase">Finalizar Compra</string>
-    <string name="cartValor">R$ 10,00</string>
+    <string name="cartValor">R$ %1$s.</string>
     <string name="defaultValue">1</string>
     <string name="amountTitle">Quantidade</string>
     <string name="sizeTitle">Tamanho</string>
@@ -40,4 +40,9 @@
     <string name="smallPrice">Pequena: 25cm por R$ %1$s.</string>
     <string name="averagePrice">Média: 30cm por R$ %1$s.</string>
     <string name="bigPrice">Grande: 35cm por R$ %1$s.</string>
+    <string name="category">"Categoria: "</string>
+    <string name="cartQtd">"Quantidade: %1$s."</string>
+    <string name="cartProductName">Produto: %1$s.</string>
+    <string name="cartPrice">Preço final: R$ %1$s.</string>
+    <string name="sizeProduct">Tamanho: %1$s.</string>
 </resources>

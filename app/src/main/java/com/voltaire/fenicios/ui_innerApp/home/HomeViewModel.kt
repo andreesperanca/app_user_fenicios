@@ -4,7 +4,10 @@ import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.FirebaseFirestoreException
 import com.voltaire.fenicios.model.Category
 import com.voltaire.fenicios.model.Product
 import com.voltaire.fenicios.repositories.HomeRepository
@@ -16,13 +19,6 @@ class HomeViewModel constructor(private val repository: HomeRepository) : ViewMo
     var listProducts = MutableLiveData<List<Product>>()
     var listCategories = MutableLiveData<List<Category>>()
 
-
-
-    fun getAllProducts (db: FirebaseFirestore) {
-        viewModelScope.launch {
-            listProducts.value = repository.getAllProducts(db)
-        }
-    }
     fun getCategories (db: FirebaseFirestore) {
         viewModelScope.launch {
                 listCategories.value = repository.getCategories(db)
