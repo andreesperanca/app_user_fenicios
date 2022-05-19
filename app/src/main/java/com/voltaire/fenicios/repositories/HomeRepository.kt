@@ -10,7 +10,7 @@ import com.voltaire.fenicios.model.Product
 
 class HomeRepository(private val firebaseService: FirebaseService) {
 
-    suspend fun getUser (db: FirebaseFirestore, auth : FirebaseAuth) = firebaseService.getUser(db, auth)
+    suspend fun loadUser (db: FirebaseFirestore, auth : FirebaseAuth) = firebaseService.loadUser(db, auth)
 
     suspend fun getCategories(db: FirebaseFirestore) = firebaseService.getCategories(db)
 

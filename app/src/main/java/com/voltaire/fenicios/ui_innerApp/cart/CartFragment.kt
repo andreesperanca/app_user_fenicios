@@ -15,6 +15,7 @@ import com.google.firebase.firestore.FirebaseFirestore
 import com.voltaire.fenicios.MainActivity
 import com.voltaire.fenicios.R
 import com.voltaire.fenicios.adapters.CartAdapter
+import com.voltaire.fenicios.adapters.CartAdapterCallBacks
 import com.voltaire.fenicios.databinding.FragmentCartBinding
 import com.voltaire.fenicios.model.CartItem
 import com.voltaire.fenicios.model.Product
@@ -23,7 +24,7 @@ import com.voltaire.fenicios.repositories.CartAndDetailsRepository
 import kotlinx.coroutines.tasks.await
 
 
-class CartFragment : Fragment() {
+class CartFragment() : Fragment() , CartAdapterCallBacks {
 
     private lateinit var binding: FragmentCartBinding
 
@@ -78,7 +79,7 @@ class CartFragment : Fragment() {
                 val user = result.toObject(User::class.java)
                 val listCart = user?.cart
                 recyclerViewCart = binding.rvCart
-                cartAdapter = CartAdapter(listCart!!)
+                cartAdapter = CartAdapter(listCart!!, listener = this)
                 recyclerViewCart.adapter = cartAdapter
                 recyclerViewCart.layoutManager = LinearLayoutManager(requireContext(), VERTICAL, false)
 
@@ -89,6 +90,27 @@ class CartFragment : Fragment() {
             }
             .addOnFailureListener { exception ->
                 TODO()
+            }
+    }
+
+    override fun ExcludeItemListener(product: Product) {
+        excludeItem(product)
+    }
+
+    private fun excludeItem(product: Product) {
+
+        val user = (context as MainActivity).userLoggedReal
+        user?.cart?.remove(product)
+        db.collection("users")
+            .document(auth.currentUser!!.uid)
+            .update("cart", user?.cart)
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    Toast.makeText(requireContext(), "Removido item.", Toast.LENGTH_SHORT).show()
+                    loadCart()
+                } else {
+                    Toast.makeText(requireContext(), "não deu certo", Toast.LENGTH_SHORT).show()
+                }
             }
     }
 }

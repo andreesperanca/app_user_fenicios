@@ -67,6 +67,17 @@
                 android:text="@string/sizeProduct"
                 android:textSize="17sp" />
 
+            <TextView
+                android:textAlignment="center"
+                android:id="@+id/excludeItem"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:textColor="@color/red"
+                android:text="@string/excludeItem"
+                android:textSize="17sp" />
+
         </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.cardview.widget.CardView>

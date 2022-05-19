@@ -45,4 +45,15 @@
     <string name="cartProductName">Produto: %1$s.</string>
     <string name="cartPrice">Preço final: R$ %1$s.</string>
     <string name="sizeProduct">Tamanho: %1$s.</string>
+    <string name="excludeItem">Retirar do carrinho</string>
+    <string name="numberPhone">Número de telefone:</string>
+    <string name="excludeAccount">Excluir conta</string>
+    <string name="logOut">Logout</string>
+    <string name="userName">Nome:</string>
+    <string name="address">Endereço de entrega:</string>
+    <string name="inputNewName">Digite seu nome:</string>
+    <string name="save">salvar</string>
+    <string name="district">Bairro:</string>
+    <string name="street">Rua:</string>
+    <string name="numberHouse">Número da casa/apt:</string>
 </resources>

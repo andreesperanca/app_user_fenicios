@@ -13,7 +13,9 @@ import com.voltaire.fenicios.model.CartItem
 import com.voltaire.fenicios.model.Product
 import kotlinx.coroutines.processNextEventInCurrentThread
 
-class CartAdapter(private val productsList: List<Product> = emptyList()) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
+class CartAdapter(private val productsList: List<Product> = emptyList(),
+                  private val listener : CartAdapterCallBacks
+) : RecyclerView.Adapter<CartAdapter.CartViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CartViewHolder {
@@ -38,6 +40,9 @@ class CartAdapter(private val productsList: List<Product> = emptyList()) : Recyc
             binding.qtdProduct.text = binding.root.context.getString(R.string.cartQtd, product.qtd.toString())
             binding.sizeProduct.text = binding.root.context.getString(R.string.sizeProduct,product.size)
 
+            binding.excludeItem.setOnClickListener {
+                listener.ExcludeItemListener(productsList[position])
+            }
 
             Glide.with(binding.root.context)
                 .load(product.url)

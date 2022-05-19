@@ -14,18 +14,6 @@ import kotlinx.coroutines.tasks.await
 
 interface FirebaseService {
 
-    suspend fun allProducts(db: FirebaseFirestore): List<Product> {
-        val requestProducts =
-            db.collection("promoções")
-                .get()
-                .await()
-                .documents
-                .mapNotNull {
-                    it.toObject(Product::class.java)
-                }
-        return requestProducts
-    }
-
     suspend fun getCategories(db: FirebaseFirestore): List<Category> {
         val requestCategories =
             db.collection("produtos")
@@ -38,14 +26,14 @@ interface FirebaseService {
         return requestCategories
     }
 
-    suspend fun getUser (db: FirebaseFirestore, auth : FirebaseAuth) =
+    suspend fun loadUser (db: FirebaseFirestore, auth : FirebaseAuth) =
         db.collection("users")
             .document(auth.currentUser!!.uid)
             .get()
             .await()
 
     companion object : FirebaseService {
-        fun newInstance(): Context {
+        fun newInstance (): Context {
             val fragment = this
             return fragment.newInstance()
         }

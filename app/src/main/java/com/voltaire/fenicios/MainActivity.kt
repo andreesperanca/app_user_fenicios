@@ -2,6 +2,7 @@ package com.voltaire.fenicios
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.lifecycle.ViewModelProvider
@@ -62,6 +63,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun initialInterface() {
+        binding.progressBar.visibility = View.INVISIBLE
+
         val navHostFragment = supportFragmentManager.findFragmentById(binding.fragmentContainerView.id) as NavHostFragment
         val navController = navHostFragment.navController
         binding.bottomNavigationView.setupWithNavController(navController)

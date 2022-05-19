@@ -47,7 +47,7 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
         super.onViewCreated(view, savedInstanceState)
 
         viewModel = ViewModelProvider(viewModelStore, CartAndDetailsViewModelFactory(
-                CartAndDetailsRepository())).get(CartAndDetailsViewModel::class.java)
+            CartAndDetailsRepository())).get(CartAndDetailsViewModel::class.java)
 
         val product = args.product
 
@@ -91,7 +91,7 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
 
     private fun addToCart() {
         val binding = BottomAddToCartDialogBinding.inflate(layoutInflater)
-        val dialog = BottomSheetDialog(requireContext(), R.style.BottomSheetStyle)
+        val dialog = BottomSheetDialog(requireContext(), R.style.AppBottomSheetDialogTheme)
         dialog.setContentView(binding.root)
 
         with(binding) {

@@ -51,8 +51,6 @@ class HomeFragment : Fragment(), CategoriesAdapterCallBacks {
     private lateinit var auth: FirebaseAuth
     private lateinit var db: FirebaseFirestore
 
-
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -65,8 +63,7 @@ class HomeFragment : Fragment(), CategoriesAdapterCallBacks {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewmodel = ViewModelProvider(
-            viewModelStore,
+        viewmodel = ViewModelProvider(viewModelStore,
             HomeViewModelFactory(
                 HomeRepository(FirebaseService)
             )
@@ -75,7 +72,6 @@ class HomeFragment : Fragment(), CategoriesAdapterCallBacks {
         db = FirebaseFirestore.getInstance()
         auth = Firebase.auth
 
-
         viewmodel.getCategories(db)
 
     }
@@ -83,7 +79,9 @@ class HomeFragment : Fragment(), CategoriesAdapterCallBacks {
     override fun onStart() {
         super.onStart()
 
-    recyclerViewProduct = binding.rvProduct
+        Toast.makeText(requireContext(), (context as MainActivity).userLoggedReal?.name.toString(), Toast.LENGTH_SHORT).show()
+
+        recyclerViewProduct = binding.rvProduct
         productAdapter = ProductAdapter(emptyList())
         recyclerViewProduct.adapter = productAdapter
         recyclerViewProduct.layoutManager = GridLayoutManager(requireContext(), 2)
@@ -110,6 +108,7 @@ class HomeFragment : Fragment(), CategoriesAdapterCallBacks {
 
     override fun onDestroy() {
         super.onDestroy()
+
         viewmodel.listProducts.value = emptyList()
         viewmodel.listCategories.value = emptyList()
     }
