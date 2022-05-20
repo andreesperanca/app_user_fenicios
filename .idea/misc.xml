@@ -22,8 +22,10 @@
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/activity_login.xml" value="0.1921875" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/bottom_add_to_cart_dialog.xml" value="0.2" />
+        <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/bottom_finish_purchase.xml" value="0.25" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/cart_product_item.xml" value="1.25" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/cart_pruduct_item.xml" value="0.22" />
+        <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/frag_finish_purchase.xml" value="0.1921875" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/frag_profile_bottom_address.xml" value="0.1921875" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/frag_profile_bottom_edit_name.xml" value="0.25" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/frag_progile_bottom_address.xml" value="0.1921875" />
@@ -33,6 +35,7 @@
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_login.xml" value="0.17" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_product_details.xml" value="0.2" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_profile.xml" value="0.2068385650224215" />
+        <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_purchase.xml" value="0.25" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_register_informations.xml" value="0.22" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_register_with_phone.xml" value="0.1921875" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/lk.xml" value="0.1921875" />

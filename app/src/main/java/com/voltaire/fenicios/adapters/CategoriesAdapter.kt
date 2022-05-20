@@ -1,17 +1,13 @@
 package com.voltaire.fenicios.adapters
 
-import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ListView
 import android.widget.TextView
-import androidx.appcompat.view.menu.MenuView
-import androidx.core.view.allViews
 import androidx.recyclerview.widget.RecyclerView
 import com.voltaire.fenicios.R
 import com.voltaire.fenicios.model.Category
-import com.voltaire.fenicios.model.Product
+
 
 class CategoriesAdapter(
     private var categoryList: List<Category>,

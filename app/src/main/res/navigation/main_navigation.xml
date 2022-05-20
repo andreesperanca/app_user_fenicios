@@ -30,12 +30,26 @@
         android:id="@+id/cartFragment"
         android:name="com.voltaire.fenicios.ui_innerApp.cart.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" />
+        tools:layout="@layout/fragment_cart" >
+        <action
+            android:id="@+id/action_cartFragment_to_purchaseFragment"
+            app:destination="@id/purchaseFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.voltaire.fenicios.ui_innerApp.profile.ProfileFragment"
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/purchaseFragment"
+        android:name="com.voltaire.fenicios.ui_innerApp.purchase.PurchaseFragment"
+        android:label="fragment_purchase"
+        tools:layout="@layout/fragment_purchase" >
+        <argument
+            android:name="valuePurchase"
+            app:argType="float"
+            android:defaultValue="0.0" />
+    </fragment>
 
 </navigation>

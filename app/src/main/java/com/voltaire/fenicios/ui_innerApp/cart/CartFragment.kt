@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
@@ -21,6 +22,7 @@ import com.voltaire.fenicios.model.CartItem
 import com.voltaire.fenicios.model.Product
 import com.voltaire.fenicios.model.User
 import com.voltaire.fenicios.repositories.CartAndDetailsRepository
+import com.voltaire.fenicios.ui_innerApp.home.HomeFragmentDirections
 import kotlinx.coroutines.tasks.await
 
 
@@ -64,11 +66,10 @@ class CartFragment() : Fragment() , CartAdapterCallBacks {
         super.onStart()
         loadCart()
 
-        binding.btnBuy.setOnClickListener {
-            val valorTotal : Int = cartPrice
-            Toast.makeText(requireContext(), "NÃO IMPLEMENTADO.", Toast.LENGTH_SHORT).show()
+        binding.btnBuy.setOnClickListener { it: View? ->
+            val action = CartFragmentDirections.actionCartFragmentToPurchaseFragment(cartPrice.toFloat())
+            it?.findNavController()?.navigate(action)
         }
-
     }
 
     private fun loadCart() {

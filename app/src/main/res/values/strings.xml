@@ -56,4 +56,6 @@
     <string name="district">Bairro:</string>
     <string name="street">Rua:</string>
     <string name="numberHouse">Número da casa/apt:</string>
+    <string name="purchaseValue">Valor a pagar:</string>
+    <string name="totalPrice">"R$ "</string>
 </resources>

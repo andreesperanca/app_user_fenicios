@@ -25,7 +25,7 @@
             android:layout_margin="16dp">
 
             <TextView
-                android:id="@+id/txt_address"
+                android:id="@+id/txtDistrict"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/address" />
@@ -34,7 +34,7 @@
                 android:id="@+id/address"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txt_address"
+                android:layout_below="@id/txtDistrict"
                 android:ellipsize="end"
                 android:maxLines="1"
                 android:textSize="17sp" />
