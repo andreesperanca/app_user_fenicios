@@ -82,5 +82,9 @@ dependencies {
 
     //mercadopagoAPI
     implementation 'com.mercadopago.android.px:checkout:4.53.1'
+
+    //LOTTIE
+    implementation "com.airbnb.android:lottie:3.7.2"
+
 }
 

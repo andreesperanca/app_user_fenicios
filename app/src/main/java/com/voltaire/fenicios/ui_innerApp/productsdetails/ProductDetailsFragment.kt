@@ -11,20 +11,16 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.navArgs
 import com.bumptech.glide.Glide
-import com.google.android.material.bottomnavigation.BottomNavigationItemView
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.voltaire.fenicios.MainActivity
 import com.voltaire.fenicios.R
-import com.voltaire.fenicios.databinding.BottomAddToCartDialogBinding
+import com.voltaire.fenicios.databinding.CartAddItemDialogBinding
 import com.voltaire.fenicios.databinding.FragmentProductDetailsBinding
-import com.voltaire.fenicios.model.CartItem
 import com.voltaire.fenicios.model.Product
 import com.voltaire.fenicios.repositories.CartAndDetailsRepository
 import com.voltaire.fenicios.ui_innerApp.cart.CartAndDetailsViewModel
 import com.voltaire.fenicios.ui_innerApp.cart.CartAndDetailsViewModelFactory
-import java.util.jar.Manifest
 
 class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
 
@@ -90,7 +86,7 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
     }
 
     private fun addToCart() {
-        val binding = BottomAddToCartDialogBinding.inflate(layoutInflater)
+        val binding = CartAddItemDialogBinding.inflate(layoutInflater)
         val dialog = BottomSheetDialog(requireContext(), R.style.AppBottomSheetDialogTheme)
         dialog.setContentView(binding.root)
 
@@ -149,7 +145,7 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
                     val newProduct = Product(
                         args.product.name, args.product.prices, args.product.category,
                         args.product.description, args.product.url, amount,
-                        amount * (args.product.prices!![returnSize])!!.toInt(),
+                        amount * (args.product.prices!![returnSize])!!.toFloat(),
                         returnSize
                     )
                     val db = FirebaseFirestore.getInstance()

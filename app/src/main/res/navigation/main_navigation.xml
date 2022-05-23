@@ -50,6 +50,14 @@
             android:name="valuePurchase"
             app:argType="float"
             android:defaultValue="0.0" />
+        <action
+            android:id="@+id/action_purchaseFragment_to_requestFragment"
+            app:destination="@id/requestFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/requestFragment"
+        android:name="com.voltaire.fenicios.RequestFragment"
+        android:label="fragment_request"
+        tools:layout="@layout/fragment_request" />
 
 </navigation>

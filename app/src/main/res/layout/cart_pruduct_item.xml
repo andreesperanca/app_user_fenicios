@@ -12,7 +12,7 @@
         android:layout_height="match_parent"
         android:layout_margin="10dp">
 
-        <de.hdodenhof.circleimageview.CircleImageView
+        <ImageView
             android:id="@+id/imageCartProduct"
             android:layout_width="120dp"
             android:layout_height="120dp"
@@ -39,43 +39,34 @@
                 android:id="@+id/cartNameProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="@string/cartProductName"
-                android:textSize="17sp" />
+                android:text="@string/cartProductName" />
 
             <TextView
                 android:id="@+id/valorProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="@string/cartQtd"
-                android:textSize="17sp" />
+                android:text="@string/cartQtd" />
 
             <TextView
                 android:id="@+id/qtdProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="@string/cartPrice"
-                android:textSize="17sp" />
+                android:text="@string/cartPrice" />
 
             <TextView
                 android:id="@+id/sizeProduct"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:text="@string/sizeProduct"
-                android:textSize="17sp" />
+                android:text="@string/sizeProduct" />
 
             <TextView
                 android:textAlignment="center"
                 android:id="@+id/excludeItem"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:textColor="@color/red"
-                android:text="@string/excludeItem"
-                android:textSize="17sp" />
+                android:layout_marginStart="30dp"
+                android:textColor="@color/primary_700"
+                android:text="@string/excludeItem" />
 
         </LinearLayout>
 

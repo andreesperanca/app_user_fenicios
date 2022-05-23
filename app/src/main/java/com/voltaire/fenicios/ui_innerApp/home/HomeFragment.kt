@@ -63,11 +63,8 @@ class HomeFragment : Fragment(), CategoriesAdapterCallBacks {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        viewmodel = ViewModelProvider(viewModelStore,
-            HomeViewModelFactory(
-                HomeRepository(FirebaseService)
-            )
-        ).get(HomeViewModel::class.java)
+        viewmodel = ViewModelProvider(viewModelStore, HomeViewModelFactory(HomeRepository(FirebaseService)))
+            .get(HomeViewModel::class.java)
 
         db = FirebaseFirestore.getInstance()
         auth = Firebase.auth
@@ -78,8 +75,6 @@ class HomeFragment : Fragment(), CategoriesAdapterCallBacks {
 
     override fun onStart() {
         super.onStart()
-
-        Toast.makeText(requireContext(), (context as MainActivity).userLoggedReal?.name.toString(), Toast.LENGTH_SHORT).show()
 
         recyclerViewProduct = binding.rvProduct
         productAdapter = ProductAdapter(emptyList())

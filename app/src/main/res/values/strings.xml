@@ -8,7 +8,7 @@
     <string name="profile">Eu</string>
     <string name="addToCart">Adicionar ao carrinho</string>
     <string name="finalizingThePurchase">Finalizar Compra</string>
-    <string name="cartValor">R$ %1$s.</string>
+    <string name="cartValor">R$ %1$s</string>
     <string name="defaultValue">1</string>
     <string name="amountTitle">Quantidade</string>
     <string name="sizeTitle">Tamanho</string>
@@ -41,10 +41,10 @@
     <string name="averagePrice">Média: 30cm por R$ %1$s.</string>
     <string name="bigPrice">Grande: 35cm por R$ %1$s.</string>
     <string name="category">"Categoria: "</string>
-    <string name="cartQtd">"Quantidade: %1$s."</string>
-    <string name="cartProductName">Produto: %1$s.</string>
-    <string name="cartPrice">Preço final: R$ %1$s.</string>
-    <string name="sizeProduct">Tamanho: %1$s.</string>
+    <string name="cartQtd">"Quantidade: %1$s"</string>
+    <string name="cartProductName">Produto: %1$s</string>
+    <string name="cartPrice">Preço final: R$ %1$s</string>
+    <string name="sizeProduct">Tamanho: %1$s</string>
     <string name="excludeItem">Retirar do carrinho</string>
     <string name="numberPhone">Número de telefone:</string>
     <string name="excludeAccount">Excluir conta</string>
@@ -58,4 +58,7 @@
     <string name="numberHouse">Número da casa/apt:</string>
     <string name="purchaseValue">Valor a pagar:</string>
     <string name="totalPrice">"R$ "</string>
+    <string name="cartValue">R$ %1$s</string>
+    <string name="payment_form1">Cartão de crédito/débito</string>
+    <string name="requests">Pedidos</string>
 </resources>

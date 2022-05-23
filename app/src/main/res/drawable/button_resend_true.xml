@@ -1,7 +1,7 @@
 <shape xmlns:android="http://schemas.android.com/apk/res/android">
 
 
-    <solid android:color="@color/red" /> <!-- cor do sólido -->
+    <solid android:color="@color/primary_700" /> <!-- cor do sólido -->
     <corners android:radius="12dp" /> <!-- valor do arredondamento das bordas -->
     <stroke
         android:width="2dp"

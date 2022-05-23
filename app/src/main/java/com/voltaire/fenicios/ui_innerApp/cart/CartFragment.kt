@@ -36,7 +36,7 @@ class CartFragment() : Fragment() , CartAdapterCallBacks {
 
     private lateinit var cartAdapter: CartAdapter
 
-    private var cartPrice : Int = 0
+    private var cartPrice : Float = 0.00f
 
     val db = FirebaseFirestore.getInstance()
     val auth = FirebaseAuth.getInstance()
@@ -83,11 +83,12 @@ class CartFragment() : Fragment() , CartAdapterCallBacks {
                 cartAdapter = CartAdapter(listCart!!, listener = this)
                 recyclerViewCart.adapter = cartAdapter
                 recyclerViewCart.layoutManager = LinearLayoutManager(requireContext(), VERTICAL, false)
+                cartPrice = 0.00f
 
                 listCart.forEach {
-                    cartPrice += it.finalPrice!!.toInt()
+                    cartPrice += it.finalPrice!!.toFloat()
                 }
-                binding.txtValor.text = context?.getString(R.string.cartValor, cartPrice.toString())
+                binding.txtValor.text = context?.getString(R.string.cartValor, cartPrice.toFloat().toString())
             }
             .addOnFailureListener { exception ->
                 TODO()

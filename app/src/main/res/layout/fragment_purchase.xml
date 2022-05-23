@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="25dp"
-    android:orientation="vertical">
+    android:layout_height="match_parent"
+    android:layout_gravity="center">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="vertical">
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -18,16 +24,19 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
+                android:textStyle="bold"
+                android:textColor="@color/black"
                 android:layout_marginHorizontal="10dp"
                 android:text="@string/purchaseValue"
                 android:textSize="33sp" />
 
             <TextView
-                android:layout_gravity="center"
                 android:id="@+id/purchaseValue"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginHorizontal="10dp"
+                android:text="@string/cartValue"
                 android:textAlignment="center"
                 android:textSize="33sp" />
 
@@ -63,15 +72,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/add_icon"
-                    android:text="Crédito"
-                    android:textSize="20sp" />
-
-                <RadioButton
-                    android:id="@+id/radioSmall"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:src="@drawable/add_icon"
-                    android:text="Dinheiro"
+                    android:text="@string/payment_form1"
                     android:textSize="20sp" />
 
             </RadioGroup>
@@ -167,6 +168,7 @@
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="end"
             android:orientation="horizontal"
             android:padding="16dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -177,7 +179,6 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginHorizontal="15dp"
-                android:backgroundTint="@color/blue"
                 android:text="@string/confirm" />
 
             <Button
@@ -188,5 +189,7 @@
                 android:text="@string/cancel"
                 android:textSize="10sp" />
         </LinearLayout>
+
+    </LinearLayout>
 
 </LinearLayout>

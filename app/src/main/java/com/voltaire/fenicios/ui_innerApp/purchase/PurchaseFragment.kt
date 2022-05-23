@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.navigation.findNavController
 import androidx.navigation.fragment.navArgs
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
@@ -18,6 +19,7 @@ import com.mercadopago.android.px.core.MercadoPagoCheckout
 import com.mercadopago.android.px.model.Payment
 import com.mercadopago.android.px.model.exceptions.MercadoPagoError
 import com.voltaire.fenicios.MainActivity
+import com.voltaire.fenicios.R
 import com.voltaire.fenicios.databinding.FragmentPurchaseBinding
 import com.voltaire.fenicios.model.Purchase
 import com.voltaire.fenicios.ui_innerApp.productsdetails.ProductDetailsFragmentArgs
@@ -49,7 +51,7 @@ class PurchaseFragment : Fragment() {
 
         with(binding) {
 
-            purchaseValue.text = purchasePrice.toString()
+            purchaseValue.text = getString(R.string.cartValue, purchasePrice.toString())
             val cUser = (context as MainActivity).userLoggedReal
 
             if ( cUser?.address != null) {
@@ -62,7 +64,7 @@ class PurchaseFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-
+        startActivityForResult(, REQUEST_CODE);
         binding.btnConfirm.setOnClickListener {
             val jsonObject = JSONObject()
             val itemJSON = JSONObject()
@@ -149,6 +151,7 @@ class PurchaseFragment : Fragment() {
         }
     }
 
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
@@ -156,7 +159,7 @@ class PurchaseFragment : Fragment() {
             if (resultCode == MercadoPagoCheckout.PAYMENT_RESULT_CODE) {
                 val payment : Payment? =
                     data!!.getSerializableExtra(MercadoPagoCheckout.EXTRA_PAYMENT_RESULT) as Payment?
-                Toast.makeText(requireContext(), payment!!.paymentStatus, Toast.LENGTH_LONG).show()
+                view?.findNavController()?.navigate(R.id.action_purchaseFragment_to_requestFragment)
 
             } else if (resultCode == AppCompatActivity.RESULT_CANCELED) {
                 if (data != null && data.extras != null && data.extras!!.containsKey(
@@ -173,3 +176,4 @@ class PurchaseFragment : Fragment() {
         }
     }
 }
+

@@ -7,15 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.Toast
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.voltaire.fenicios.LoginActivity
 import com.voltaire.fenicios.MainActivity
-import com.voltaire.fenicios.databinding.FragProfileBottomAddressBinding
-import com.voltaire.fenicios.databinding.FragProfileBottomEditNameBinding
-import com.voltaire.fenicios.databinding.FragmentProfileBinding
+import com.voltaire.fenicios.databinding.*
 import com.voltaire.fenicios.model.Address
 import com.voltaire.fenicios.model.User
 
@@ -59,7 +55,7 @@ class ProfileFragment : Fragment() {
     }
 
     private fun editUserAddress() {
-        val _binding = FragProfileBottomAddressBinding.inflate(layoutInflater)
+        val _binding = ProfileBottomEditAddressBinding.inflate(layoutInflater)
         val dialog = BottomSheetDialog(requireContext())
         dialog.setContentView(_binding.root)
 
@@ -73,7 +69,7 @@ class ProfileFragment : Fragment() {
         }
         dialog.show()
     }
-    private fun saveNewAddress(_binding: FragProfileBottomAddressBinding, dialog: BottomSheetDialog) {
+    private fun saveNewAddress(_binding: ProfileBottomEditAddressBinding, dialog: BottomSheetDialog) {
         val street = _binding.editStreet.text.toString()
         val number = _binding.editNumberHouse.text.toString()
         val district = _binding.editDistrict.text.toString()
@@ -97,7 +93,7 @@ class ProfileFragment : Fragment() {
             }
     }
     private fun editUserName() {
-        val _binding = FragProfileBottomEditNameBinding.inflate(layoutInflater)
+        val _binding = ProfileBottomEditNameBinding.inflate(layoutInflater)
         val dialog = BottomSheetDialog(requireContext())
         dialog.setContentView(_binding.root)
 
@@ -111,7 +107,7 @@ class ProfileFragment : Fragment() {
         }
         dialog.show()
     }
-    private fun saveNameUser(_binding: FragProfileBottomEditNameBinding, dialog: BottomSheetDialog) {
+    private fun saveNameUser(_binding: ProfileBottomEditNameBinding, dialog: BottomSheetDialog) {
 
         (activity as MainActivity).db.collection("users")
             .document((activity as MainActivity).auth.currentUser!!.uid)

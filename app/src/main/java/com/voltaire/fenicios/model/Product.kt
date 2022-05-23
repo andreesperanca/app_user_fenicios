@@ -10,7 +10,7 @@ data class  Product(
     val category: String = "",
     val description: String = "",
     val url: String = "",
-    val qtd : Int? = 1,
-    val finalPrice : Int?  = null,
-    val size : String = "nDefinida"
+    val qtd: Int? = 1,
+    val finalPrice: Float = 0.00f,
+    val size: String = "nDefinida"
 ) : Parcelable
