@@ -30,11 +30,7 @@
         android:id="@+id/cartFragment"
         android:name="com.voltaire.fenicios.ui_innerApp.cart.CartFragment"
         android:label="fragment_cart"
-        tools:layout="@layout/fragment_cart" >
-        <action
-            android:id="@+id/action_cartFragment_to_purchaseFragment"
-            app:destination="@id/purchaseFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_cart" />
 
     <fragment
         android:id="@+id/profileFragment"
@@ -42,22 +38,22 @@
         android:label="fragment_profile"
         tools:layout="@layout/fragment_profile" />
     <fragment
-        android:id="@+id/purchaseFragment"
-        android:name="com.voltaire.fenicios.ui_innerApp.purchase.PurchaseFragment"
-        android:label="fragment_purchase"
-        tools:layout="@layout/fragment_purchase" >
-        <argument
-            android:name="valuePurchase"
-            app:argType="float"
-            android:defaultValue="0.0" />
-        <action
-            android:id="@+id/action_purchaseFragment_to_requestFragment"
-            app:destination="@id/requestFragment" />
-    </fragment>
-    <fragment
         android:id="@+id/requestFragment"
-        android:name="com.voltaire.fenicios.RequestFragment"
+        android:name="com.voltaire.fenicios.ui_innerApp.requests.RequestFragment"
         android:label="fragment_request"
-        tools:layout="@layout/fragment_request" />
+        tools:layout="@layout/fragment_request" >
+        <action
+            android:id="@+id/action_requestFragment_pop"
+            app:popUpTo="@id/requestFragment"
+            app:popUpToInclusive="true" />
+    </fragment>
+
+
+    <action
+        android:id="@+id/action_global_test"
+        app:destination="@id/requestFragment"
+        app:launchSingleTop="false"
+        app:popUpTo="@+id/request_navigation"
+        app:popUpToInclusive="true" />
 
 </navigation>

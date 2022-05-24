@@ -1,71 +1,60 @@
-package com.voltaire.fenicios.ui_innerApp.purchase
+package com.voltaire.fenicios.ui_innerApp.payment
 
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.navArgs
+import androidx.navigation.NavDeepLinkBuilder
+import androidx.navigation.fragment.NavHostFragment
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
 import com.android.volley.toolbox.Volley
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.mercadopago.android.px.core.MercadoPagoCheckout
 import com.mercadopago.android.px.model.Payment
 import com.mercadopago.android.px.model.exceptions.MercadoPagoError
 import com.voltaire.fenicios.MainActivity
 import com.voltaire.fenicios.R
-import com.voltaire.fenicios.databinding.FragmentPurchaseBinding
+import com.voltaire.fenicios.databinding.ActivityStartPaymentBinding
+import com.voltaire.fenicios.model.Address
+import com.voltaire.fenicios.model.Product
 import com.voltaire.fenicios.model.Purchase
-import com.voltaire.fenicios.ui_innerApp.productsdetails.ProductDetailsFragmentArgs
+import com.voltaire.fenicios.model.User
+import com.voltaire.fenicios.ui_innerApp.requests.RequestFragment
+import com.voltaire.fenicios.utils.Constants
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
 
-class PurchaseFragment : Fragment() {
+class StartPaymentActivity : AppCompatActivity() {
 
-    private lateinit var binding : FragmentPurchaseBinding
-
+    private lateinit var cartUser: MutableList<Product>
+    private lateinit var binding: ActivityStartPaymentBinding
     private val REQUEST_CODE: Int = 210
+    private val db = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
+    private lateinit var cUserAddress: Address
 
-    private val args: PurchaseFragmentArgs by navArgs()
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        binding = ActivityStartPaymentBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-    override fun onCreateView(
-        inflater: LayoutInflater,
-        container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        binding = FragmentPurchaseBinding.inflate(layoutInflater)
-        return binding.root
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        val purchasePrice = args.valuePurchase
-
-        with(binding) {
-
-            purchaseValue.text = getString(R.string.cartValue, purchasePrice.toString())
-            val cUser = (context as MainActivity).userLoggedReal
-
-            if ( cUser?.address != null) {
-                purchaseDistrict.setText(cUser.address.district)
-                purchaseStreet.setText(cUser.address.street)
-                purchaseHouseNumber.setText(cUser.address.number)
-            }
-        }
+        val args = intent.getFloatExtra("cartPrice", 0.00f)
+        binding.purchaseValue.text = getString(R.string.cartValue, args.toString())
+        loadAddress()
     }
 
     override fun onStart() {
         super.onStart()
-        startActivityForResult(, REQUEST_CODE);
+
+        val args = intent.getFloatExtra("cartPrice", 0.00f)
+
         binding.btnConfirm.setOnClickListener {
+
             val jsonObject = JSONObject()
             val itemJSON = JSONObject()
             val payerJSON = JSONObject()
@@ -76,7 +65,7 @@ class PurchaseFragment : Fragment() {
                 itemJSON.put("title", "Pizza")
                 itemJSON.put("quantity", 1)
                 itemJSON.put("currency_id", "BRL")
-                itemJSON.put("unit_price", args.valuePurchase)
+                itemJSON.put("unit_price", args)
                 itemJsonArray.put(itemJSON)
 
                 //PHONE
@@ -115,10 +104,10 @@ class PurchaseFragment : Fragment() {
             val userJson = JSONObject()
             userJson.put("user", payerJSON)
 
-            val requestQueue = Volley.newRequestQueue(requireContext())
-            val PUBLIC_KEY_SANDBOX = "TEST-fa840a8a-0df1-4995-830c-a81ba5b9b4d1"
-            val accessSandBoxToken = "TEST-4589497852166609-042514-bb3c4c6085b5dd3df1e947d3c3f9a29c-1001599393"
-            val url = "https://api.mercadopago.com/checkout/preferences?access_token=${accessSandBoxToken}"
+            val requestQueue = Volley.newRequestQueue(this)
+            val PUBLIC_KEY_SANDBOX = Constants.PUBLIC_KEY_SANDBOX
+            val accessSandBoxToken = Constants.ACCESS_SANDBOX_TOKEN
+            val url = "${Constants._URL}${accessSandBoxToken}"
 
             val jsonObjectRequest: JsonObjectRequest = object : JsonObjectRequest(
                 Method.POST, url, jsonObject,
@@ -128,7 +117,8 @@ class PurchaseFragment : Fragment() {
                         val checkoutPreferenceId = response.getString("id")
                         MercadoPagoCheckout.Builder(PUBLIC_KEY_SANDBOX, checkoutPreferenceId)
                             .build()
-                            .startPayment(requireContext(), REQUEST_CODE)
+                            .startPayment(this, REQUEST_CODE)
+
                     } catch (e: JSONException) {
                         e.printStackTrace()
                     }
@@ -149,17 +139,60 @@ class PurchaseFragment : Fragment() {
             }
             requestQueue.add(jsonObjectRequest)
         }
+        binding.btnCancel.setOnClickListener {
+            finish()
+        }
     }
 
+    private fun loadAddress() {
+        db.collection("users")
+            .document(auth.currentUser?.uid.toString())
+            .get()
+            .addOnCompleteListener {
+                if (it.isSuccessful) {
+                    val cUser = it.result.toObject(User::class.java)
+                    cartUser = cUser?.cart!!
+                    cUserAddress = cUser?.address!!
+
+                    with(binding) {
+                        purchaseDistrict.setText(cUserAddress.district)
+                        purchaseStreet.setText(cUserAddress.street)
+                        purchaseHouseNumber.setText(cUserAddress.number)
+                    }
+                }
+            }
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 
         if (requestCode == REQUEST_CODE) {
             if (resultCode == MercadoPagoCheckout.PAYMENT_RESULT_CODE) {
-                val payment : Payment? =
+                val payment: Payment? =
                     data!!.getSerializableExtra(MercadoPagoCheckout.EXTRA_PAYMENT_RESULT) as Payment?
-                view?.findNavController()?.navigate(R.id.action_purchaseFragment_to_requestFragment)
+
+                val newPurchase = Purchase(
+                    payment?.transactionAmount.toString(),
+                    cUserAddress,
+                    payment?.payer.toString(),
+                    payment?.paymentStatus.toString(),
+                    cartUser
+                )
+
+                db.collection("users")
+                    .document(auth.currentUser!!.uid)
+                    .update("cart", emptyArray<Product>().toMutableList())
+
+                db.collection("pedidos")
+                    .document(auth.currentUser?.uid!!)
+                    .set(newPurchase)
+                    .addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            val intent = Intent(this, MainActivity::class.java)
+                            startActivity(intent)
+                            finish()
+                        }
+                    }
 
             } else if (resultCode == AppCompatActivity.RESULT_CANCELED) {
                 if (data != null && data.extras != null && data.extras!!.containsKey(
@@ -168,12 +201,11 @@ class PurchaseFragment : Fragment() {
                 ) {
                     val mercadoPagoError =
                         data.getSerializableExtra(MercadoPagoCheckout.EXTRA_ERROR) as MercadoPagoError?
-                    Toast.makeText(requireContext(), mercadoPagoError!!.message, Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, mercadoPagoError!!.message, Toast.LENGTH_LONG).show()
                 } else {
-                    Toast.makeText(requireContext(), "pagamento cancelado", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "pagamento cancelado", Toast.LENGTH_LONG).show()
                 }
             }
         }
     }
 }
-

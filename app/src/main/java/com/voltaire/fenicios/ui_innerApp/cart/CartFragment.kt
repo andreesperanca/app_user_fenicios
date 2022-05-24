@@ -1,5 +1,6 @@
 package com.voltaire.fenicios.ui_innerApp.cart
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,7 +8,6 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.VERTICAL
@@ -15,15 +15,13 @@ import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.voltaire.fenicios.MainActivity
 import com.voltaire.fenicios.R
+import com.voltaire.fenicios.ui_innerApp.payment.StartPaymentActivity
 import com.voltaire.fenicios.adapters.CartAdapter
 import com.voltaire.fenicios.adapters.CartAdapterCallBacks
 import com.voltaire.fenicios.databinding.FragmentCartBinding
-import com.voltaire.fenicios.model.CartItem
 import com.voltaire.fenicios.model.Product
 import com.voltaire.fenicios.model.User
 import com.voltaire.fenicios.repositories.CartAndDetailsRepository
-import com.voltaire.fenicios.ui_innerApp.home.HomeFragmentDirections
-import kotlinx.coroutines.tasks.await
 
 
 class CartFragment() : Fragment() , CartAdapterCallBacks {
@@ -67,8 +65,9 @@ class CartFragment() : Fragment() , CartAdapterCallBacks {
         loadCart()
 
         binding.btnBuy.setOnClickListener { it: View? ->
-            val action = CartFragmentDirections.actionCartFragmentToPurchaseFragment(cartPrice.toFloat())
-            it?.findNavController()?.navigate(action)
+            val intent = Intent(activity, StartPaymentActivity::class.java)
+            intent.putExtra("cartPrice", cartPrice)
+            startActivity(intent)
         }
     }
 

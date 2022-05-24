@@ -39,9 +39,10 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         loadUser()
+
     }
 
-    private fun loadUser() {
+     fun loadUser() {
         db.collection("users")
             .document(auth.currentUser?.uid.toString())
             .addSnapshotListener { user , error ->
