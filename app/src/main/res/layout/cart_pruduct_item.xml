@@ -20,12 +20,12 @@
             android:scaleType="centerCrop"
             android:src="@drawable/mock_product"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/llCart"
+            app:layout_constraintEnd_toStartOf="@id/llRequests"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
-            android:id="@+id/llCart"
+            android:id="@+id/llRequests"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="10dp"

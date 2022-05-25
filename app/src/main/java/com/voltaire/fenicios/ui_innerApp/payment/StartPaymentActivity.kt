@@ -19,19 +19,22 @@ import com.mercadopago.android.px.model.exceptions.MercadoPagoError
 import com.voltaire.fenicios.MainActivity
 import com.voltaire.fenicios.R
 import com.voltaire.fenicios.databinding.ActivityStartPaymentBinding
-import com.voltaire.fenicios.model.Address
-import com.voltaire.fenicios.model.Product
-import com.voltaire.fenicios.model.Purchase
-import com.voltaire.fenicios.model.User
+import com.voltaire.fenicios.model.*
 import com.voltaire.fenicios.ui_innerApp.requests.RequestFragment
 import com.voltaire.fenicios.utils.Constants
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.HashMap
 
 class StartPaymentActivity : AppCompatActivity() {
 
     private lateinit var cartUser: MutableList<Product>
+
+    private lateinit var listRequest : MutableList<Purchase>
+
     private lateinit var binding: ActivityStartPaymentBinding
     private val REQUEST_CODE: Int = 210
     private val db = FirebaseFirestore.getInstance()
@@ -171,20 +174,23 @@ class StartPaymentActivity : AppCompatActivity() {
                 val payment: Payment? =
                     data!!.getSerializableExtra(MercadoPagoCheckout.EXTRA_PAYMENT_RESULT) as Payment?
 
+                Toast.makeText(this, "Pagamento finalizado, pedido adicionado na aba: Pedidos.", Toast.LENGTH_LONG).show()
+
                 val newPurchase = Purchase(
                     payment?.transactionAmount.toString(),
                     cUserAddress,
                     payment?.payer.toString(),
+                    cartUser,
                     payment?.paymentStatus.toString(),
-                    cartUser
+                    StatusRequest.PENDENTE
                 )
 
-                db.collection("users")
-                    .document(auth.currentUser!!.uid)
-                    .update("cart", emptyArray<Product>().toMutableList())
+                val date = Calendar.getInstance().time.toLocaleString()
 
                 db.collection("pedidos")
-                    .document(auth.currentUser?.uid!!)
+                    .document("pendentes")
+                    .collection(auth.currentUser?.uid!!)
+                    .document(date.toString())
                     .set(newPurchase)
                     .addOnCompleteListener {
                         if (it.isSuccessful) {
@@ -193,6 +199,10 @@ class StartPaymentActivity : AppCompatActivity() {
                             finish()
                         }
                     }
+
+                db.collection("users")
+                    .document(auth.currentUser!!.uid)
+                    .update("cart", emptyArray<Product>().toMutableList())
 
             } else if (resultCode == AppCompatActivity.RESULT_CANCELED) {
                 if (data != null && data.extras != null && data.extras!!.containsKey(
@@ -203,7 +213,7 @@ class StartPaymentActivity : AppCompatActivity() {
                         data.getSerializableExtra(MercadoPagoCheckout.EXTRA_ERROR) as MercadoPagoError?
                     Toast.makeText(this, mercadoPagoError!!.message, Toast.LENGTH_LONG).show()
                 } else {
-                    Toast.makeText(this, "pagamento cancelado", Toast.LENGTH_LONG).show()
+                    Toast.makeText(this, "Pagamento cancelado.", Toast.LENGTH_LONG).show()
                 }
             }
         }

@@ -61,4 +61,7 @@
     <string name="cartValue">R$ %1$s</string>
     <string name="payment_form1">Cartão de crédito/débito</string>
     <string name="requests">Pedidos</string>
+    <string name="purchaseValueRequest">Valor pago: R$ %1$s</string>
+    <string name="statusRequest">Status do pedido: %1$s</string>
+    <string name="addressRequest">Endereço de entrega: %1$s</string>
 </resources>
