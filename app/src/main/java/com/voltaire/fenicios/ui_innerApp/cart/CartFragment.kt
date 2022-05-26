@@ -107,10 +107,10 @@ class CartFragment() : Fragment() , CartAdapterCallBacks {
             .update("cart", user?.cart)
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    Toast.makeText(requireContext(), "Removido item.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Produto removido do carrinho.", Toast.LENGTH_SHORT).show()
                     loadCart()
                 } else {
-                    Toast.makeText(requireContext(), "não deu certo", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(requireContext(), "Erro inesperado.", Toast.LENGTH_SHORT).show()
                 }
             }
     }

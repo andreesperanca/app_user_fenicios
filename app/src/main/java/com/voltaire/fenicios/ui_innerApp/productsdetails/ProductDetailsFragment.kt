@@ -158,10 +158,10 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
                         .update( "cart", user?.cart)
                         .addOnCompleteListener {
                             if (it.isSuccessful) {
-                                Toast.makeText(requireContext(), "item adicionado.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(requireContext(), "Produto adicionado ao carrinho.", Toast.LENGTH_SHORT).show()
                                 dialog.dismiss()
                             } else {
-                                Toast.makeText(requireContext(), "não deu certo", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(requireContext(), "Erro inesperado.", Toast.LENGTH_SHORT).show()
                                 dialog.dismiss()
                             }
                         }

@@ -153,14 +153,16 @@ class StartPaymentActivity : AppCompatActivity() {
             .get()
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                    val cUser = it.result.toObject(User::class.java)
-                    cartUser = cUser?.cart!!
-                    cUserAddress = cUser?.address!!
+                        val cUser = it.result.toObject(User::class.java)
+                        if (cUser?.address != null) {
+                        cartUser = cUser?.cart!!
+                        cUserAddress = cUser?.address!!
 
-                    with(binding) {
-                        purchaseDistrict.setText(cUserAddress.district)
-                        purchaseStreet.setText(cUserAddress.street)
-                        purchaseHouseNumber.setText(cUserAddress.number)
+                        with(binding) {
+                            purchaseDistrict.setText(cUserAddress.district)
+                            purchaseStreet.setText(cUserAddress.street)
+                            purchaseHouseNumber.setText(cUserAddress.number)
+                        }
                     }
                 }
             }

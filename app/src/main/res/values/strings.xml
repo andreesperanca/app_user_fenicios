@@ -30,7 +30,7 @@
     <string name="loginMessage">Sabemos que está com fome…\n mas antes faça login utilizando seu número de celular.</string>
     <string name="sentCode">Um código de verificação foi enviado para o número: \n \n %1$s \n \n digite ele no campo abaixo e envie, por favor.</string>
     <string name="notRecieve">Não recebeu? clique no botão abaixo após o período de espera.</string>
-    <string name="welcome">Parece que você é novo por aqui.\n Me conte seu nome e bom apetite.</string>
+    <string name="welcome">Parece que você é novo por aqui.\nMe conte seu nome e email e tenha um bom apetite.</string>
     <string name="categories">Explore as categorias</string>
     <string name="welcomeUser">Seja bem-vindo \n %1$s \n</string>
     <string name="product_price">A partir de R$ %1$s</string>
@@ -64,4 +64,7 @@
     <string name="purchaseValueRequest">Valor pago: R$ %1$s</string>
     <string name="statusRequest">Status do pedido: %1$s</string>
     <string name="addressRequest">Endereço de entrega: %1$s</string>
+    <string name="email">"Email"</string>
+    <string name="pedidos">Pedidos em execução</string>
+    <string name="userEmail">Email:</string>
 </resources>

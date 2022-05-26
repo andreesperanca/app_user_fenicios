@@ -134,6 +134,7 @@ class ProfileFragment : Fragment() {
         binding.userName.text = user?.name.toString()
         binding.userNumberPhone.addTextChangedListener(PhoneNumberFormattingTextWatcher("BR"))
         binding.userNumberPhone.text = user?.numberPhone.toString()
+        binding.userEmail.text = user?.email.toString()
     }
     private fun attInfosListener() {
         val mRefe = (context as MainActivity)

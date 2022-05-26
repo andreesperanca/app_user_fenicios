@@ -40,17 +40,18 @@
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_home.xml" value="0.25" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_login.xml" value="0.17" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_product_details.xml" value="0.2" />
-        <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_profile.xml" value="0.2068385650224215" />
+        <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_purchase.xml" value="0.18" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_register_informations.xml" value="0.22" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_register_with_phone.xml" value="0.1921875" />
-        <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_request.xml" value="0.2" />
+        <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/fragment_request.xml" value="0.22" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/lk.xml" value="0.1921875" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/product_item.xml" value="0.33" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/requests_product_item.xml" value="0.25" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/resendbtnbackground.xml" value="0.1921875" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/layout/type_product_item.xml" value="0.33" />
         <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/menu/bottom_menu.xml" value="0.1921875" />
+        <entry key="..\:/GitHub Projects/Fenicios/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1285" />
       </map>
     </option>
   </component>

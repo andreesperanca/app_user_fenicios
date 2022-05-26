@@ -59,8 +59,10 @@ class RegisterInformationFragment : Fragment() {
     private fun registerUserInFirebase() {
         if (verifyRegister()) {
             val txtName = binding.txtName.text.toString()
+            val txtEmail = binding.txtEmail.text.toString()
+
             val phoneNumber = auth.currentUser?.phoneNumber
-            val newUser = User(uidUser, txtName, phoneNumber.toString())
+            val newUser = User(uidUser, txtName, phoneNumber.toString(), txtEmail)
 
             db.collection("users")
                 .document(uidUser)
@@ -80,10 +82,13 @@ class RegisterInformationFragment : Fragment() {
 
     private fun verifyRegister(): Boolean {
         val txtName = binding.txtName.text
-        if (txtName != null && txtName.isNotEmpty() && txtName.isNotBlank()) {
+        val txtEmail = binding.txtEmail.text
+        if (txtName != null && txtName.isNotEmpty() && txtName.isNotBlank() &&
+            txtEmail != null && txtEmail.isNotEmpty() && txtEmail.isNotBlank()
+        ) {
             return true
         } else {
-            toastCreator("Ei amigo, digite um nome válido por favor.")
+            toastCreator("Ei amigo, digite um nome e email válido por favor.")
             return false
         }
     }
