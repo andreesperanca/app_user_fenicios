@@ -6,7 +6,7 @@
 Tabela de conteúdos
 =================
 <!--ts-->
-   * [Sobre](sobre-book)
+   * [Sobre](#sobre-book)
    * [Tecnologias](tecnologias-rocket)
    * [Features](features-)
    * [Rodando aplicativo](rodando-o-aplicativo--)
