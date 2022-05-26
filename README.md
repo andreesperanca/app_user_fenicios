@@ -6,9 +6,9 @@
 Tabela de conteúdos
 =================
 <!--ts-->
-   * [Sobre](##Sobre)
+   * [Sobre](#sobre)
    * [Tecnologias](##Tecnologias)
-   * [Features](##Features)
+   * [Features](#features)
    * [Rodando aplicativo](##Features)
    * [Fotos](##Autor)
    * [Gifs](##Gifs)
