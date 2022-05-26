@@ -6,13 +6,13 @@
 Tabela de conteúdos
 =================
 <!--ts-->
-   * [Sobre](#sobre)
-   * [Tecnologias](##Tecnologias)
-   * [Features](#features)
-   * [Rodando aplicativo](##Features)
-   * [Fotos](##Autor)
-   * [Gifs](##Gifs)
-   * [Autor](##Autor) 
+   * [Sobre](sobre-book)
+   * [Tecnologias](tecnologias-rocket)
+   * [Features](features-)
+   * [Rodando aplicativo](rodando-o-aplicativo--)
+   * [Fotos](screenshots-camera)
+   * [Gifs](gifs-movie_camera)
+   * [Autor](autor) 
 <!--te-->
 
 
