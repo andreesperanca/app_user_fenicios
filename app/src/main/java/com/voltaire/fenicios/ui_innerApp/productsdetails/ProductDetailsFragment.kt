@@ -58,7 +58,7 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
             detailPrice.text = getString(R.string.defaultPrice, product.prices!!["Pequena"])
 
             detailSmallPrice.text = getString(R.string.smallPrice, product.prices!!["Pequena"])
-            detailAveragePrice.text = getString(R.string.averagePrice, product.prices!!["Media"])
+            detailAveragePrice.text = getString(R.string.averagePrice, product.prices!!["Média"])
             detailBigPrice.text = getString(R.string.bigPrice, product.prices!!["Grande"])
 
         }
