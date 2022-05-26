@@ -7,12 +7,12 @@ Tabela de conteúdos
 =================
 <!--ts-->
    * [Sobre](#sobre-book)
-   * [Tecnologias](tecnologias-rocket)
-   * [Features](features-)
-   * [Rodando aplicativo](rodando-o-aplicativo--)
-   * [Fotos](screenshots-camera)
-   * [Gifs](gifs-movie_camera)
-   * [Autor](autor) 
+   * [Tecnologias](#tecnologias-rocket)
+   * [Features](#features-)
+   * [Rodando aplicativo](#rodando-o-aplicativo--)
+   * [Fotos](#screenshots-camera)
+   * [Gifs](#gifs-movie_camera)
+   * [Autor](#autor) 
 <!--te-->
 
 
