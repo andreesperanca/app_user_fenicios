@@ -5,8 +5,6 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.NavDeepLinkBuilder
-import androidx.navigation.fragment.NavHostFragment
 import com.android.volley.AuthFailureError
 import com.android.volley.Response
 import com.android.volley.toolbox.JsonObjectRequest
@@ -20,12 +18,10 @@ import com.voltaire.fenicios.MainActivity
 import com.voltaire.fenicios.R
 import com.voltaire.fenicios.databinding.ActivityStartPaymentBinding
 import com.voltaire.fenicios.model.*
-import com.voltaire.fenicios.ui_innerApp.requests.RequestFragment
-import com.voltaire.fenicios.utils.Constants
+import com.voltaire.fenicios.utils.constants.Constants
 import org.json.JSONArray
 import org.json.JSONException
 import org.json.JSONObject
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.HashMap
 
@@ -33,7 +29,7 @@ class StartPaymentActivity : AppCompatActivity() {
 
     private lateinit var cartUser: MutableList<Product>
 
-    private lateinit var listRequest : MutableList<Purchase>
+    private lateinit var listRequest: MutableList<Purchase>
 
     private lateinit var binding: ActivityStartPaymentBinding
     private val REQUEST_CODE: Int = 210
@@ -58,93 +54,109 @@ class StartPaymentActivity : AppCompatActivity() {
 
         binding.btnConfirm.setOnClickListener {
 
-            val jsonObject = JSONObject()
-            val itemJSON = JSONObject()
-            val payerJSON = JSONObject()
-            val itemJsonArray = JSONArray()
-
-            try {
-                //ITEM
-                itemJSON.put("title", "Pizza")
-                itemJSON.put("quantity", 1)
-                itemJSON.put("currency_id", "BRL")
-                itemJSON.put("unit_price", args)
-                itemJsonArray.put(itemJSON)
-
-                //PHONE
-                val phoneJSON = JSONObject()
-                phoneJSON.put("number", "880.402.7555")
-
-                //IDJSON
-                val idJSON = JSONObject()
-                idJSON.put("type", "CPF")
-                idJSON.put("number", "12345678909")
-
-                //ADDRESSJSON
-                val addressJSON = JSONObject()
-                addressJSON.put("street_name", "APRO")
-                addressJSON.put("street_number", 25598)
-                addressJSON.put("zip_code", "8972")
-
-                //PAYERJSON
-                payerJSON.put("name", "APRO")
-                payerJSON.put("email", "test@gmail.com")
-                payerJSON.put("date_created", "2015-06-02T12:58:41.425-04:00")
-                payerJSON.put("phone", phoneJSON)
-                payerJSON.put("identification", idJSON)
-                payerJSON.put("address", addressJSON)
-
-                //JSON OBJECT
-
-                jsonObject.put("items", itemJsonArray)
-                jsonObject.put("payer", payerJSON)
-
-
-            } catch (e: JSONException) {
-                e.printStackTrace()
+            if (!verifyAddress()) {
+                Toast.makeText(this, "Por favor, insira um endereço de entrega.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
             }
 
-            val userJson = JSONObject()
-            userJson.put("user", payerJSON)
+            if (binding.radioGroupPayment.checkedRadioButtonId != -1) {
 
-            val requestQueue = Volley.newRequestQueue(this)
-            val PUBLIC_KEY_SANDBOX = Constants.PUBLIC_KEY_SANDBOX
-            val accessSandBoxToken = Constants.ACCESS_SANDBOX_TOKEN
-            val url = "${Constants._URL}${accessSandBoxToken}"
+                val jsonObject = JSONObject()
+                val itemJSON = JSONObject()
+                val payerJSON = JSONObject()
+                val itemJsonArray = JSONArray()
 
-            val jsonObjectRequest: JsonObjectRequest = object : JsonObjectRequest(
-                Method.POST, url, jsonObject,
-                Response.Listener { response ->
-                    try {
-                        Log.i("debinf MainAct", "response JSONObject: $response")
-                        val checkoutPreferenceId = response.getString("id")
-                        MercadoPagoCheckout.Builder(PUBLIC_KEY_SANDBOX, checkoutPreferenceId)
-                            .build()
-                            .startPayment(this, REQUEST_CODE)
+                try {
+                    //ITEM
+                    itemJSON.put("title", "Pizza")
+                    itemJSON.put("quantity", 1)
+                    itemJSON.put("currency_id", "BRL")
+                    itemJSON.put("unit_price", args)
+                    itemJsonArray.put(itemJSON)
 
-                    } catch (e: JSONException) {
-                        e.printStackTrace()
-                    }
-                },
+                    //PHONE
+                    val phoneJSON = JSONObject()
+                    phoneJSON.put("number", "880.402.7555")
 
-                Response.ErrorListener { error ->
-                    Log.i(
-                        "debinf MainAct",
-                        "response ERROR: " + error.networkResponse.allHeaders
-                    )
-                }) {
-                @Throws(AuthFailureError::class)
-                override fun getHeaders(): Map<String, String> {
-                    val headers: MutableMap<String, String> = HashMap()
-                    headers["Content-Type"] = "application/json"
-                    return headers
+                    //IDJSON
+                    val idJSON = JSONObject()
+                    idJSON.put("type", "CPF")
+                    idJSON.put("number", "12345678909")
+
+                    //ADDRESSJSON
+                    val addressJSON = JSONObject()
+                    addressJSON.put("street_name", "APRO")
+                    addressJSON.put("street_number", 25598)
+                    addressJSON.put("zip_code", "8972")
+
+                    //PAYERJSON
+                    payerJSON.put("name", "APRO")
+                    payerJSON.put("email", "test@gmail.com")
+                    payerJSON.put("date_created", "2015-06-02T12:58:41.425-04:00")
+                    payerJSON.put("phone", phoneJSON)
+                    payerJSON.put("identification", idJSON)
+                    payerJSON.put("address", addressJSON)
+
+                    //JSON OBJECT
+
+                    jsonObject.put("items", itemJsonArray)
+                    jsonObject.put("payer", payerJSON)
+
+
+                } catch (e: JSONException) {
+                    e.printStackTrace()
                 }
+
+                val userJson = JSONObject()
+                userJson.put("user", payerJSON)
+
+                val requestQueue = Volley.newRequestQueue(this)
+                val PUBLIC_KEY_SANDBOX = Constants.PUBLIC_KEY_SANDBOX
+                val accessSandBoxToken = Constants.ACCESS_SANDBOX_TOKEN
+                val url = "${Constants._URL}${accessSandBoxToken}"
+
+                val jsonObjectRequest: JsonObjectRequest = object : JsonObjectRequest(
+                    Method.POST, url, jsonObject,
+                    Response.Listener { response ->
+                        try {
+                            Log.i("debinf MainAct", "response JSONObject: $response")
+                            val checkoutPreferenceId = response.getString("id")
+                            MercadoPagoCheckout.Builder(PUBLIC_KEY_SANDBOX, checkoutPreferenceId)
+                                .build()
+                                .startPayment(this, REQUEST_CODE)
+
+                        } catch (e: JSONException) {
+                            e.printStackTrace()
+                        }
+                    },
+
+                    Response.ErrorListener { error ->
+                        Log.i(
+                            "debinf MainAct",
+                            "response ERROR: " + error.networkResponse.allHeaders
+                        )
+                    }) {
+                    @Throws(AuthFailureError::class)
+                    override fun getHeaders(): Map<String, String> {
+                        val headers: MutableMap<String, String> = HashMap()
+                        headers["Content-Type"] = "application/json"
+                        return headers
+                    }
+                }
+                requestQueue.add(jsonObjectRequest)
+            } else {
+                Toast.makeText(
+                    this,
+                    "Por favor selecione a forma de pagamento.",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
-            requestQueue.add(jsonObjectRequest)
         }
+
         binding.btnCancel.setOnClickListener {
             finish()
         }
+
     }
 
     private fun loadAddress() {
@@ -153,8 +165,8 @@ class StartPaymentActivity : AppCompatActivity() {
             .get()
             .addOnCompleteListener {
                 if (it.isSuccessful) {
-                        val cUser = it.result.toObject(User::class.java)
-                        if (cUser?.address != null) {
+                    val cUser = it.result.toObject(User::class.java)
+                    if (cUser?.address != null) {
                         cartUser = cUser?.cart!!
                         cUserAddress = cUser?.address!!
 
@@ -176,7 +188,11 @@ class StartPaymentActivity : AppCompatActivity() {
                 val payment: Payment? =
                     data!!.getSerializableExtra(MercadoPagoCheckout.EXTRA_PAYMENT_RESULT) as Payment?
 
-                Toast.makeText(this, "Pagamento finalizado, pedido adicionado na aba: Pedidos.", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    this,
+                    "Pagamento finalizado, pedido adicionado na aba: Pedidos.",
+                    Toast.LENGTH_LONG
+                ).show()
 
                 val newPurchase = Purchase(
                     payment?.transactionAmount.toString(),
@@ -219,5 +235,21 @@ class StartPaymentActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun verifyAddress() : Boolean {
+        val payerDistrict = binding.purchaseDistrict.text
+        val payerStreet = binding.purchaseStreet.text
+        val payerNumberHouse = binding.purchaseHouseNumber.text
+
+        return !(payerDistrict == null ||
+                payerDistrict.isEmpty() ||
+                payerDistrict.isBlank() ||
+                payerStreet == null ||
+                payerStreet.isEmpty() ||
+                payerStreet.isBlank() ||
+                payerNumberHouse == null ||
+                payerNumberHouse.isEmpty() ||
+                payerNumberHouse.isBlank())
     }
 }

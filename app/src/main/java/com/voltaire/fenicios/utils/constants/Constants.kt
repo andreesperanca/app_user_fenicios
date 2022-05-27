@@ -1,4 +1,4 @@
-package com.voltaire.fenicios.utils
+package com.voltaire.fenicios.utils.constants
 
 class Constants {
 

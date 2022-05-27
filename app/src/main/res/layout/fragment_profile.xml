@@ -133,6 +133,8 @@
 
 
         <Button
+            style="@style/FormButton"
+            android:background="@drawable/button_form"
             android:id="@+id/btnLogout"
             android:layout_margin="15dp"
             android:layout_gravity="center"

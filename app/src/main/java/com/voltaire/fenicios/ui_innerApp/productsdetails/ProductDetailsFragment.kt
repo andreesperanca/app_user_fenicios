@@ -68,7 +68,6 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
         super.onStart()
 
         viewModel.listCart.observe(viewLifecycleOwner, Observer {
-            Log.i("teste", it.size.toString())
         })
 
 
@@ -86,6 +85,7 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
     }
 
     private fun addToCart() {
+
         val binding = CartAddItemDialogBinding.inflate(layoutInflater)
         val dialog = BottomSheetDialog(requireContext(), R.style.AppBottomSheetDialogTheme)
         dialog.setContentView(binding.root)
@@ -101,7 +101,7 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
                 } else {
                     Toast.makeText(
                         requireContext(),
-                        "Você não pode fazer essa ação",
+                        "Você não pode fazer essa ação.",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
@@ -122,26 +122,10 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
                 }
             }
 
-            fun checkBoxReturn(radioGroup: RadioGroup): String {
-                if (radioGroup.checkedRadioButtonId == -1) {
-                    Toast.makeText(
-                        requireContext(),
-                        "Selecione uma das opções de tamanho, por favor.",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                when (radioGroup.checkedRadioButtonId) {
-                    radioBig.id -> return "Grande"
-                    radioAverage.id -> return "Média"
-                    radioSmall.id -> return "Pequena"
-                }
-                return "null"
-            }
-
             btnConfirm.setOnClickListener {
-                val returnSize = checkBoxReturn(binding.radioGroupSize)
+                val returnSize = checkBoxReturn(binding.radioGroupSize, binding.radioBig, binding.radioAverage, binding.radioSmall)
                 val amount = binding.txtAmount.text.toString().toInt()
-                if (checkBoxReturn(binding.radioGroupSize) != "null") {
+                if (returnSize != "null") {
                     val newProduct = Product(
                         args.product.name, args.product.prices, args.product.category,
                         args.product.description, args.product.url, amount,
@@ -152,16 +136,23 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
                     val user = (context as MainActivity).userLoggedReal
                     user?.cart?.add(newProduct)
 
-
                     db.collection("users")
                         .document((activity as MainActivity).auth.currentUser!!.uid)
-                        .update( "cart", user?.cart)
+                        .update("cart", user?.cart)
                         .addOnCompleteListener {
                             if (it.isSuccessful) {
-                                Toast.makeText(requireContext(), "Produto adicionado ao carrinho.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Produto adicionado ao carrinho.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                                 dialog.dismiss()
                             } else {
-                                Toast.makeText(requireContext(), "Erro inesperado.", Toast.LENGTH_SHORT).show()
+                                Toast.makeText(
+                                    requireContext(),
+                                    "Erro inesperado.",
+                                    Toast.LENGTH_SHORT
+                                ).show()
                                 dialog.dismiss()
                             }
                         }
@@ -174,5 +165,22 @@ class ProductDetailsFragment : Fragment(R.layout.fragment_product_details) {
 
             dialog.show()
         }
+
+
+    }
+    private fun checkBoxReturn (radioGroup: RadioGroup, rBig : RadioButton, rAverage : RadioButton, rSmall : RadioButton): String {
+        if (radioGroup.checkedRadioButtonId == -1) {
+            Toast.makeText(
+                requireContext(),
+                "Selecione uma das opções de tamanho, por favor.",
+                Toast.LENGTH_SHORT
+            ).show()
+        }
+        when (radioGroup.checkedRadioButtonId) {
+            rBig.id -> return "Grande"
+            rAverage.id -> return "Média"
+            rSmall.id -> return "Pequena"
+        }
+        return "null"
     }
 }

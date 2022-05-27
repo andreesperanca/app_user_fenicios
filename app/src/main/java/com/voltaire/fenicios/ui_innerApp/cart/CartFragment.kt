@@ -65,9 +65,14 @@ class CartFragment() : Fragment() , CartAdapterCallBacks {
         loadCart()
 
         binding.btnBuy.setOnClickListener { it: View? ->
-            val intent = Intent(activity, StartPaymentActivity::class.java)
-            intent.putExtra("cartPrice", cartPrice)
-            startActivity(intent)
+
+            if (cartPrice != 0.0f) {
+                val intent = Intent(activity, StartPaymentActivity::class.java)
+                intent.putExtra("cartPrice", cartPrice)
+                startActivity(intent)
+            } else {
+                Toast.makeText(requireContext(), "O carrinho deve conter ao menos 1 produto.", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 
