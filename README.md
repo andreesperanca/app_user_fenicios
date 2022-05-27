@@ -48,6 +48,7 @@ As seguintes ferramentas estão sendo utilizadas no desenvolvimento do projeto:
 - [x] Criar pedidos no banco de dados;
 - [x] Listagem de pedidos;
 - [x] Edição de nome de usuário e endereço de entrega;
+- [ ] Adicionar cálculo de frete;
 - [ ] Bugs eliminados e configurações terminadas. 
 
 
