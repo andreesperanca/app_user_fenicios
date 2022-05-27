@@ -19,7 +19,9 @@ Tabela de conteúdos
 
 
 ## Sobre :book:
-Aplicativo de delivery com o login dos usuários efetuado por autenticação de número de telefone e criação dos mesmos utilizando o Firebase que também é utilizado como backend da aplicação para armazenar por exemplo produtos e pedidos. Conta por hora com apenas uma forma de pagamento (cartões de crédito/débito) sistema implementado com a API do Mercado Pago. 
+  Aplicativo de delivery com o login dos usuários efetuado por autenticação de número de telefone e criação dos mesmos utilizando o Firebase que também é utilizado como backend da aplicação para armazenar por exemplo produtos e pedidos. Conta por hora com apenas uma forma de pagamento (cartões de crédito/débito) sistema implementado com a API do Mercado Pago. 
+
+Obs: a versão do Github não contém as credenciais pessoais do Mercado Pago, em caso de testes deve inserir as próprias nas constantes do projeto que podem ser encontradas no package com.voltaire.fenicios.utils.
 
 ## Tecnologias :rocket:
 
@@ -46,6 +48,7 @@ As seguintes ferramentas estão sendo utilizadas no desenvolvimento do projeto:
 - [x] Criar pedidos no banco de dados;
 - [x] Listagem de pedidos;
 - [x] Edição de nome de usuário e endereço de entrega;
+- [ ] Adicionar cálculo de frete;
 - [ ] Bugs eliminados e configurações terminadas. 
 
 
