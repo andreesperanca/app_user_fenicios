@@ -1,7 +1,7 @@
 <h1 align="center">Sistema Fenícios</h1>
 
 <p> 
-  O Sistema Fenícios se divide em duas plataformas, a aplicação mobile onde são feitas as vendas e toda a interação do usuário e a desktop onde apenas o pseudo dono do estabelecimento pode acessar e com privilégios por exemplo criar/excluir/modificar produtos, receber pedidos, modificar seu status, obter acesso a quantidade de vendas entre outras funcionalidades. </p>
+  O Sistema Fenícios se divide em aplicações, ambas mobile uma para interação com o usuário e outra apenas para o pseudo dono do estabelecimento pode acessar e ter controle do estabelicimento com privilégios por exemplo de criar/excluir/modificar produtos, receber pedidos, modificar seu status, obter acesso a quantidade de vendas entre outras funcionalidades. </p>
 
 <h1 align="center">Aplicação em desenvolvimento</h1>
 
