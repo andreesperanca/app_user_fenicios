@@ -19,7 +19,7 @@ Tabela de conteúdos
 
 
 ## Sobre :book:
-                                                                🚧  Em construção  🚧
+                                                           🚧  Em construção  🚧
 
 ## Tecnologias :rocket:
 
@@ -53,7 +53,7 @@ As seguintes ferramentas estão sendo utilizadas no desenvolvimento do projeto:
 ## Rodando o aplicativo  🎲  
 
 <h4 align="center"> 
-	                                                               🚧  Em construção  🚧
+	                                                   🚧  Em construção  🚧
 </h4>
 
 ## Screenshots :camera: 
