@@ -16,7 +16,7 @@ Tabela de conteúdos
 
 
 ## Sobre :book:
-Aplicação destinada para o usuário do sistema Fenícios com login por autenticação de número de telefone e fluxo de compra completo desde escolher o produto e adicionar no carrinho até o seu pagamento utilizando a API do Mercado Pago.
+Aplicação destinada para o usuário do sistema Fenícios com login por autenticação de número de telefone, edição de campos do usuário e fluxo de compra completo desde escolher o produto e adicionar no carrinho até o seu pagamento utilizando a API do Mercado Pago.
 
 ## Tecnologias :rocket:
 
