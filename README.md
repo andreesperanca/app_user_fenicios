@@ -1,7 +1,4 @@
-<h1 align="center">Sistema Fenícios</h1>
-
-<p> 
-  O Sistema Fenícios se divide em duas aplicações, ambas mobile uma para interação com o usuário e outra apenas para o pseudo dono do estabelecimento, onde pode acessar e ter controle do estabelicimento com privilégios por exemplo de criar/excluir/modificar produtos, receber pedidos e modificar seu status, obter acesso a quantidade de vendas entre outras funcionalidades. </p>
+<h1 align="center">Sistema Fenícios - Aplicação do usuário</h1>
 
 <h1 align="center">Aplicação em desenvolvimento</h1>
 
@@ -19,7 +16,7 @@ Tabela de conteúdos
 
 
 ## Sobre :book:
-                                                           🚧  Em construção  🚧
+Aplicação destinada para o usuário do sistema Fenícios com login por autenticação de número de telefone e fluxo de compra completo desde escolher o produto e adicionar no carrinho até o seu pagamento utilizando a API do Mercado Pago.
 
 ## Tecnologias :rocket:
 
